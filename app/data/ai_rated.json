@@ -1,0 +1,2576 @@
+[
+  {
+    "diagnosisGroup": "AIDS",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Orthopedic default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped Ent",
+    "domain": "ילד נכה",
+    "docName": "ב\"ל 3506 - הערכה תפקודית לילד",
+    "docId": 1000295,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Other skin cancer",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Other skin cancer",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Other skin cancer",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Other skin cancer",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Orthopedic default",
+    "domain": "פטור ממס",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Orthopedic default",
+    "domain": "נכות מעבודה",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped cardiology",
+    "domain": "ילד נכה",
+    "docName": "ECG, אלקטרוקרדיוגרם, עם פענוח ודוח",
+    "docId": 1051501,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Orthopedic default",
+    "domain": "נכות",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Oncology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Oncology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Oncology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Oncology default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "OA of knee",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped YN Default",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped derm",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "OA of knee",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped epilepsy",
+    "domain": "ילד נכה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped neurosurgery",
+    "domain": "ילד נכה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped neuro",
+    "domain": "ילד נכה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped nephrology",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped infectious disease",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped hand surgery",
+    "domain": "ילד נכה",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped gyn",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped endo-thryoid",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped diabetes",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped endo-pituitary",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped endo-parathyroid",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped endo-hypogonadism",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped endo-female",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped endo-adrenal",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped endo GH",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "OA of knee",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "OA of knee",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped rheumatology",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial-dental default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Melanoma",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Melanoma",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Melanoma",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Melanoma",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial-dental default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial-dental default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial-dental default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "NIHL",
+    "domain": "נכות",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial trauma",
+    "domain": "פטור ממס",
+    "docName": "בדיקת שמיעה מקיפה",
+    "docId": 1051506,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial trauma",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת שמיעה מקיפה",
+    "docId": 1051506,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial trauma",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת שמיעה מקיפה",
+    "docId": 1051506,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Maxillofacial trauma",
+    "domain": "נכות",
+    "docName": "בדיקת שמיעה מקיפה",
+    "docId": 1051506,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Lung cancer",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Lung cancer",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "NIHL",
+    "domain": "ילד נכה",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "NIHL",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Neurology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקת רופא נוירולוג במרפאה",
+    "docId": 1051106,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Neurology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת רופא נוירולוג במרפאה",
+    "docId": 1051106,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Neurology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת רופא נוירולוג במרפאה",
+    "docId": 1051106,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Neurology default",
+    "domain": "נכות",
+    "docName": "בדיקת רופא נוירולוג במרפאה",
+    "docId": 1051106,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Neurology default",
+    "domain": "ילד נכה",
+    "docName": "בדיקת רופא נוירולוג במרפאה",
+    "docId": 1051106,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Neurologic oncology",
+    "domain": "ילד נכה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "NIHL",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrology default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrolithiasis",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrolithiasis",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrolithiasis",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Nephrolithiasis",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "NIHL",
+    "domain": "פטור ממס",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped oncology",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped trauma",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Allergy default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "UGI",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "UGI",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "UGI",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "UGI",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology-Neurology",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Traumatic Brain Injury",
+    "domain": "פטור ממס",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Traumatic Brain Injury",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Traumatic Brain Injury",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Traumatic Brain Injury",
+    "domain": "נכות",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Tourettes",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Thyroid disease",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology-Neurology",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology-Neurology",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Thyroid disease",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vertigo",
+    "domain": "פטור ממס",
+    "docName": "מאפייני טינטון TINNITUS בדיקת בט\"ל",
+    "docId": 1051246,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "דום נשימה חסימתי",
+    "domain": "פטור ממס",
+    "docName": "בדיקת שינה ביתית עם צמיד",
+    "docId": 1030164,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "דום נשימה חסימתי",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת שינה ביתית עם צמיד",
+    "docId": 1030164,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "דום נשימה חסימתי",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת שינה ביתית עם צמיד",
+    "docId": 1030164,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "דום נשימה חסימתי",
+    "domain": "נכות",
+    "docName": "בדיקת שינה ביתית עם צמיד",
+    "docId": 1030164,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "דום נשימה חסימתי",
+    "domain": "מס הכנסה",
+    "docName": "בדיקת שינה ביתית עם צמיד",
+    "docId": 1030164,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "inborn metabolic disease",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vertigo",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "מאפייני טינטון TINNITUS בדיקת בט\"ל",
+    "docId": 1051246,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Urology-Neurology",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vertigo",
+    "domain": "נכות מעבודה",
+    "docName": "מאפייני טינטון TINNITUS בדיקת בט\"ל",
+    "docId": 1051246,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vertigo",
+    "domain": "נכות",
+    "docName": "מאפייני טינטון TINNITUS בדיקת בט\"ל",
+    "docId": 1051246,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vascular surgery default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vascular surgery default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vascular surgery default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Vascular surgery default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Thyroid disease",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Thyroid disease",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped tuberculosis",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Peripheral neuropathy",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Polio",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Plastics default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Plastics default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Plastics default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Plastics default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Peripheral neuropathy",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Peripheral neuropathy",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Polio",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Peripheral neuropathy",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Pediatric default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Pediatric default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Pediatric default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Pediatric default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ped urology ostomy",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Polio",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Polio",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "TB",
+    "domain": "פטור ממס",
+    "docName": "צילום בית החזה, עד שני מבטים",
+    "docId": 1071012,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Surgery default",
+    "domain": "נכות",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "TB",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "צילום בית החזה, עד שני מבטים",
+    "docId": 1071012,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "TB",
+    "domain": "נכות מעבודה",
+    "docName": "צילום בית החזה, עד שני מבטים",
+    "docId": 1071012,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "TB",
+    "domain": "נכות",
+    "docName": "צילום בית החזה, עד שני מבטים",
+    "docId": 1071012,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Surgery default",
+    "domain": "פטור ממס",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Surgery default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Surgery default",
+    "domain": "נכות מעבודה",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Rheumatology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Radiotherapy default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Rheumatology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Rheumatology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Rheumatology default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Radiotherapy default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Radiotherapy default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Radiotherapy default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Lung cancer",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Lung cancer",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Leukemia",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Coagulation defects",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Communicative disorders",
+    "domain": "ילד נכה",
+    "docName": "ב\"ל 3506 - הערכה תפקודית לילד",
+    "docId": 1000295,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Colon cancer",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Colon cancer",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Colon cancer",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Colon cancer",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Coagulation defects",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Coagulation defects",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Congenital infections",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Coagulation defects",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Children Hearing loss",
+    "domain": "ילד נכה",
+    "docName": "בדיקת BERA כוללת (תדרים לסף)",
+    "docId": 1051260,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Celiac",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiothoracic default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiothoracic default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiothoracic default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Congenital heart disease",
+    "domain": "ילד נכה",
+    "docName": "ECG, אלקטרוקרדיוגרם, עם פענוח ודוח",
+    "docId": 1051501,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Contact dermatitis",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dental  default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dermatology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dermatology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dermatology default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dental  default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dental  default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dental  default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Degenerative neuromuscular",
+    "domain": "ילד נכה",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Contact dermatitis",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "DM",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "DM",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "DM",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "DM",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Contact dermatitis",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Contact dermatitis",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiothoracic default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Leukemia",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Back pain",
+    "domain": "נכות",
+    "docName": "בדיקת רופא אורתופד במרפאה",
+    "docId": 1051104,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Bladder cancer",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Bladder cancer",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Bladder cancer",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Back pain",
+    "domain": "פטור ממס",
+    "docName": "בדיקת רופא אורתופד במרפאה",
+    "docId": 1051104,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Back pain",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת רופא אורתופד במרפאה",
+    "docId": 1051104,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Back pain",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת רופא אורתופד במרפאה",
+    "docId": 1051104,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Arrhythmia",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Breast cancer",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Arrhythmia",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Arrhythmia",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Arrhythmia",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Allergy default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Allergy default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Allergy default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Bladder cancer",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Breast cancer",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CTS",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Cardiology default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CVA",
+    "domain": "פטור ממס",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CVA",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CVA",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CVA",
+    "domain": "נכות",
+    "docName": "בדיקת CT ראש  Brain",
+    "docId": 1072103,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CTS",
+    "domain": "פטור ממס",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CTS",
+    "domain": "נכות מעבודה",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Breast cancer",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "CTS",
+    "domain": "נכות",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "COPD",
+    "domain": "פטור ממס",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "COPD",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "COPD",
+    "domain": "נכות מעבודה",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "COPD",
+    "domain": "נכות",
+    "docName": "פענוח צילום/הדמיה",
+    "docId": 1000158,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Breast cancer",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dermatology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Dialysis",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "ENT default",
+    "domain": "נכות",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Head neck surgery default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hypercoagulability",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hypercoagulability",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hematologic complications",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hematologic complications",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hematologic complications",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hematologic complications",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Head neck surgery default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hypercoagulability",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Head neck surgery default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Head neck surgery default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hand surgery default",
+    "domain": "פטור ממס",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hand surgery default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hand surgery default",
+    "domain": "נכות מעבודה",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hand surgery default",
+    "domain": "נכות",
+    "docName": "EMG, אלקטרומיוגרפיה ממוחשבת כמותית",
+    "docId": 1051519,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Hypercoagulability",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "IBD Crohn Ulcerative",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "ENT default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Impotence",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Leukemia",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Leukemia",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ischemic heart disease",
+    "domain": "פטור ממס",
+    "docName": "בדיקת רופא קרדיולוג במרפאה",
+    "docId": 1051122,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ischemic heart disease",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת רופא קרדיולוג במרפאה",
+    "docId": 1051122,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ischemic heart disease",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקת רופא קרדיולוג במרפאה",
+    "docId": 1051122,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Ischemic heart disease",
+    "domain": "נכות",
+    "docName": "בדיקת רופא קרדיולוג במרפאה",
+    "docId": 1051122,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Impotence",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "IM default",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Impotence",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Impotence",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "IM default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "IM default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "IM default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "IM default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "HTN",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "HTN",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "HTN",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Epilepsy",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Fibromyalgia",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Feeding disorders",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Failure to thrive",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Epilepsy",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Epilepsy",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Epilepsy",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Endocrinology default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "HTN",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Endocrinology default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Endocrinology default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Endocrinology default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Eating disorders",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "ENT default",
+    "domain": "פטור ממס",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "ENT default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקת רופא אף, אוזן וגרון במרפאה",
+    "docId": 1051107,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Fibromyalgia",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Fibromyalgia",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Fibromyalgia",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "GI  Ostomy",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "GI default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "GI default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "GI default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "GI default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn default",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn default",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn default",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn default",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn surg",
+    "domain": "ילד נכה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn surg",
+    "domain": "נכות",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn surg",
+    "domain": "נכות מעבודה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn surg",
+    "domain": "נפגעי פעולות איבה",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "Gyn surg",
+    "domain": "פטור ממס",
+    "docName": "בדיקות מעבדות עדכניות",
+    "docId": 1000160,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  },
+  {
+    "diagnosisGroup": "דום נשימה חסימתי",
+    "domain": "שירותים מיוחדים",
+    "docName": "בדיקת שינה ביתית עם צמיד",
+    "docId": 1030164,
+    "aiConfidence": "גבוהה מאוד (5/5)",
+    "docType": "בדיקה/פענוח אובייקטיבי",
+    "implementationNotes": "מתאים לפיילוט מסלול ירוק - זיהוי ודאי"
+  }
+]

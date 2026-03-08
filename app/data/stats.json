@@ -1,0 +1,246 @@
+{
+  "totalRecords": 3934,
+  "totalAiRated": 286,
+  "diagnosisGroupCount": 140,
+  "domainCount": 7,
+  "domains": {
+    "ילד נכה": 812,
+    "נכות": 778,
+    "נכות מעבודה": 778,
+    "נפגעי פעולות איבה": 778,
+    "פטור ממס": 778,
+    "מס הכנסה": 5,
+    "שירותים מיוחדים": 5
+  },
+  "topDiagnoses": [
+    {
+      "name": "Back pain",
+      "count": 84
+    },
+    {
+      "name": "Orthopedic default",
+      "count": 76
+    },
+    {
+      "name": "IM default",
+      "count": 70
+    },
+    {
+      "name": "Mental Health default",
+      "count": 68
+    },
+    {
+      "name": "TB",
+      "count": 68
+    },
+    {
+      "name": "Neurology default",
+      "count": 65
+    },
+    {
+      "name": "ENT default",
+      "count": 64
+    },
+    {
+      "name": "Surgery default",
+      "count": 64
+    },
+    {
+      "name": "Traumatic Brain Injury",
+      "count": 60
+    },
+    {
+      "name": "Breast cancer",
+      "count": 56
+    },
+    {
+      "name": "DM",
+      "count": 56
+    },
+    {
+      "name": "Ischemic heart disease",
+      "count": 56
+    },
+    {
+      "name": "Urology-Neurology",
+      "count": 56
+    },
+    {
+      "name": "NIHL",
+      "count": 55
+    },
+    {
+      "name": "COPD",
+      "count": 52
+    },
+    {
+      "name": "CVS Vascular default",
+      "count": 52
+    },
+    {
+      "name": "HTN",
+      "count": 52
+    },
+    {
+      "name": "Hand surgery default",
+      "count": 52
+    },
+    {
+      "name": "Nephrology default",
+      "count": 52
+    },
+    {
+      "name": "OA of knee",
+      "count": 52
+    }
+  ],
+  "mvpDiagnoses": [
+    "Back pain",
+    "Ischemic heart disease",
+    "CTS",
+    "DM",
+    "COPD"
+  ],
+  "diagnosisGroups": [
+    "ADHD ADD",
+    "AIDS",
+    "Allergy default",
+    "Arrhythmia",
+    "Back pain",
+    "Bladder cancer",
+    "Breast cancer",
+    "COPD",
+    "CTS",
+    "CVA",
+    "CVS Vascular default",
+    "Cardiology default",
+    "Cardiothoracic default",
+    "Celiac",
+    "Cerebral palsy",
+    "Children Hearing loss",
+    "Chromosomal- Downs",
+    "Coagulation defects",
+    "Colon cancer",
+    "Communicative disorders",
+    "Congenital heart disease",
+    "Congenital infections",
+    "Contact dermatitis",
+    "Cystic fibrosis",
+    "DM",
+    "Degenerative neuromuscular",
+    "Dental  default",
+    "Dermatology default",
+    "Developmental undiagnosed",
+    "Dialysis",
+    "ENT default",
+    "Eating disorders",
+    "Endocrinology default",
+    "Epilepsy",
+    "Eye disease",
+    "F03",
+    "Failure to thrive",
+    "Feeding disorders",
+    "Fibromyalgia",
+    "Fragile X",
+    "GI  Ostomy",
+    "GI default",
+    "Gyn default",
+    "Gyn surg",
+    "HTN",
+    "Hand surgery default",
+    "Head neck surgery default",
+    "Hematologic complications",
+    "Hypercoagulability",
+    "IBD Crohn Ulcerative",
+    "IM default",
+    "Impotence",
+    "Ischemic heart disease",
+    "Leukemia",
+    "Lung cancer",
+    "Maxillofacial default",
+    "Maxillofacial trauma",
+    "Maxillofacial-dental default",
+    "Melanoma",
+    "Mental Health default",
+    "Mental retardation children",
+    "Multisystem trauma-MVA",
+    "NIHL",
+    "Nephrolithiasis",
+    "Nephrology default",
+    "Neurologic oncology",
+    "Neurology default",
+    "Neurosurgery default",
+    "OA of knee",
+    "Oncology default",
+    "Orthopedic default",
+    "Osteogenic imperfecta",
+    "Other skin cancer",
+    "PDD autistic",
+    "Ped Allergy",
+    "Ped Behavioral",
+    "Ped Burn",
+    "Ped Ent",
+    "Ped Immunology",
+    "Ped Polio",
+    "Ped YN Default",
+    "Ped asthma pulmonary",
+    "Ped cardiology",
+    "Ped cardiothoracic",
+    "Ped derm",
+    "Ped diabetes",
+    "Ped endo GH",
+    "Ped endo-adrenal",
+    "Ped endo-female",
+    "Ped endo-hypogonadism",
+    "Ped endo-parathyroid",
+    "Ped endo-pituitary",
+    "Ped endo-thryoid",
+    "Ped epilepsy",
+    "Ped gastroenterology",
+    "Ped gyn",
+    "Ped hand surgery",
+    "Ped hem",
+    "Ped infectious disease",
+    "Ped maxillofacial",
+    "Ped nephrology",
+    "Ped neuro",
+    "Ped neurosurgery",
+    "Ped oncology",
+    "Ped rheumatology",
+    "Ped surgery",
+    "Ped trauma",
+    "Ped tuberculosis",
+    "Ped urology ostomy",
+    "Ped vascular",
+    "Ped visual",
+    "Pediatric Mental Health",
+    "Pediatric default",
+    "Peripheral neuropathy",
+    "Plastics default",
+    "Plegia",
+    "Polio",
+    "Prader Willi",
+    "Radiotherapy default",
+    "Rehab default",
+    "Rheumatology default",
+    "Scar burn",
+    "Smell problems",
+    "Surgery default",
+    "TB",
+    "Thyroid disease",
+    "Tourettes",
+    "Traumatic Brain Injury",
+    "UGI",
+    "Undiagnosed not functional",
+    "Urology default",
+    "Urology-Neurology",
+    "Varicose veins",
+    "Vascular surgery default",
+    "Vertigo",
+    "inborn metabolic disease",
+    "ped Orthopedic default",
+    "pediatric cerebral palsy",
+    "דום נשימה חסימתי",
+    "ילדן השתלות"
+  ]
+}

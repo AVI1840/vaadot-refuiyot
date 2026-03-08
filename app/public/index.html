@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>פרויקט DD — צ'קליסט מסמכים חכם | ועדות רפואיות</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <div class="header-top">
+        <div>
+          <h1>🏥 פרויקט DD — מערכת צ'קליסט מסמכים חכמה</h1>
+          <div class="subtitle">ועדות רפואיות | אביעד יצחקי, מינהל גמלאות | ביטוח לאומי</div>
+        </div>
+        <button class="feedback-btn" onclick="openFeedback()">💬 משוב פיילוט</button>
+      </div>
+      <nav>
+        <button class="nav-btn active" data-view="dashboard">📊 דשבורד</button>
+        <button class="nav-btn" data-view="checklist">📋 צ'קליסט</button>
+        <button class="nav-btn" data-view="tracking">📈 מעקב תיקים</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- DASHBOARD VIEW -->
+    <section id="view-dashboard" class="view active">
+      <div class="stats-grid" id="stats-grid"></div>
+      <div class="charts-row">
+        <div class="card">
+          <h3>פילוח לפי תחום תביעה</h3>
+          <div id="domain-chart" class="bar-chart"></div>
+        </div>
+        <div class="card">
+          <h3>15 אבחנות מובילות</h3>
+          <div id="top-diag-chart" class="bar-chart"></div>
+        </div>
+      </div>
+      <div class="card mvp-card">
+        <h3>⭐ 5 אבחנות MVP לפיילוט</h3>
+        <div id="mvp-list" class="mvp-grid"></div>
+      </div>
+    </section>
+
+    <!-- CHECKLIST VIEW -->
+    <section id="view-checklist" class="view">
+      <div class="card checklist-controls">
+        <h3>בחירת אבחנה ותחום</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sel-domain">תחום תביעה</label>
+            <select id="sel-domain"><option value="">כל התחומים</option></select>
+          </div>
+          <div class="form-group">
+            <label for="sel-diagnosis">קבוצת אבחנה</label>
+            <select id="sel-diagnosis"><option value="">בחר אבחנה...</option></select>
+          </div>
+          <button id="btn-load" class="btn-primary">טען צ'קליסט</button>
+        </div>
+      </div>
+
+      <div id="checklist-results"></div>
+
+      <div id="message-panel" class="card" style="display:none">
+        <h3>📩 הודעה לתובע — מסמכים חסרים</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="claimant-name">שם התובע</label>
+            <input type="text" id="claimant-name" placeholder="שם מלא">
+          </div>
+          <button id="btn-generate-msg" class="btn-secondary">צור הודעה</button>
+        </div>
+        <pre id="generated-message" class="message-output"></pre>
+        <button id="btn-copy-msg" class="btn-small" style="display:none">📋 העתק</button>
+      </div>
+    </section>
+
+    <!-- TRACKING VIEW -->
+    <section id="view-tracking" class="view">
+      <div class="card">
+        <h3>📈 מעקב תיקים — Baseline & Progress</h3>
+        <div class="tracking-stats" id="tracking-stats"></div>
+        <div class="search-filter">
+          <input type="text" id="tracking-search" placeholder="🔍 חיפוש בטבלה..." class="search-input">
+        </div>
+        <table id="tracking-table" class="data-table">
+          <thead>
+            <tr>
+              <th>תאריך</th><th>מס׳ תיק</th><th>אבחנה</th><th>תחום</th>
+              <th>מסמכים שהוגשו</th><th>מסמכים חסרים</th><th>אחוז שלמות</th><th>סטטוס</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="tracking-empty" class="empty-state">אין נתוני מעקב עדיין. שמור תיקים מהצ'קליסט.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- FEEDBACK MODAL -->
+  <div id="feedback-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeFeedback()">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>💬 משוב פיילוט</h2>
+        <button class="modal-close" onclick="closeFeedback()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="fb-field">
+          <label>קטגוריה</label>
+          <div class="fb-grid" id="fb-categories">
+            <button class="fb-option" onclick="selectCategory(this)">🐛 באג</button>
+            <button class="fb-option" onclick="selectCategory(this)">💡 שיפור</button>
+            <button class="fb-option" onclick="selectCategory(this)">📊 נתונים</button>
+            <button class="fb-option" onclick="selectCategory(this)">🎨 עיצוב</button>
+          </div>
+        </div>
+        <div class="fb-field">
+          <label>חומרה</label>
+          <div class="fb-grid" id="fb-severity">
+            <button class="fb-option" onclick="selectSeverity(this)">קריטי</button>
+            <button class="fb-option" onclick="selectSeverity(this)">שיפור</button>
+            <button class="fb-option" onclick="selectSeverity(this)">קטן</button>
+          </div>
+        </div>
+        <div class="fb-field">
+          <label>תיאור</label>
+          <textarea id="fb-text" rows="3" placeholder="תאר את המשוב..."></textarea>
+        </div>
+        <button class="btn-primary" onclick="submitFeedback()" style="width:100%">שלח משוב</button>
+        <div id="fb-list" style="margin-top:1rem"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-small" onclick="exportFeedback()">📋 ייצוא כל המשובים</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>פרויקט DD — מערכת צ'קליסט מסמכים חכמה | ועדות רפואיות | אביעד יצחקי, מינהל גמלאות | v2.1 | מרץ 2026</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

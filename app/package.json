@@ -1,0 +1,13 @@
+{
+  "name": "project-dd",
+  "version": "1.0.0",
+  "description": "Project DD - Medical Committees Smart Document Checklist",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "extract": "python ../scripts/extract_data.py"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
