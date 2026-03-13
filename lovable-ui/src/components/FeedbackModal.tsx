@@ -14,6 +14,28 @@ interface Feedback {
 }
 
 const STORAGE_KEY = 'btl-feedback-medical-committees';
+const APP_NAME = 'ועדות רפואיות';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxT0P5RtHmEhT-wzxN4H_CzxqpFsnqjPUs9uiV9V7caxr4rE7qGouDfK6yI5tLjNY1PTw/exec';
+
+async function sendToSheet(entry: Feedback): Promise<boolean> {
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        app: APP_NAME,
+        category: categories.find(c => c.id === entry.category)?.label || 'כללי',
+        severity: severities.find(s => s.id === entry.severity)?.label || '—',
+        text: entry.text,
+        page: window.location.pathname,
+      }),
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}
 
 const categories = [
   { id: 'bug', label: '🐛 באג' },
@@ -40,7 +62,7 @@ export default function FeedbackModal() {
     if (saved) setHistory(JSON.parse(saved));
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!category || !severity || !text.trim()) {
       toast.error('נא למלא את כל השדות');
       return;
@@ -52,6 +74,7 @@ export default function FeedbackModal() {
       text: text.trim(),
       date: new Date().toLocaleDateString('he-IL'),
     };
+    await sendToSheet(item);
     const updated = [item, ...history];
     setHistory(updated);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
