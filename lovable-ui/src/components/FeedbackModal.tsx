@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 
 interface Feedback {
   id: string;
+  name: string;
   category: string;
   severity: string;
   text: string;
@@ -15,7 +16,8 @@ interface Feedback {
 
 const STORAGE_KEY = 'btl-feedback-medical-committees';
 const APP_NAME = 'ועדות רפואיות';
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbxT0P5RtHmEhT-wzxN4H_CzxqpFsnqjPUs9uiV9V7caxr4rE7qGouDfK6yI5tLjNY1PTw/exec';
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwD8CMFoP5XoOwRLwK_OxMMOFKF8fS2CRpbJkNdOHjbnJIepkOLzlGrg3GQNGRqbwB6bA/exec';
+const NAME_KEY = 'btl-feedback-user-name';
 
 async function sendToSheet(entry: Feedback): Promise<boolean> {
   try {
@@ -25,6 +27,7 @@ async function sendToSheet(entry: Feedback): Promise<boolean> {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         app: APP_NAME,
+        name: entry.name || 'אנונימי',
         category: categories.find(c => c.id === entry.category)?.label || 'כללי',
         severity: severities.find(s => s.id === entry.severity)?.label || '—',
         text: entry.text,
@@ -52,6 +55,7 @@ const severities = [
 
 export default function FeedbackModal() {
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState(() => localStorage.getItem(NAME_KEY) || '');
   const [category, setCategory] = useState('');
   const [severity, setSeverity] = useState('');
   const [text, setText] = useState('');
@@ -63,12 +67,14 @@ export default function FeedbackModal() {
   }, []);
 
   const handleSubmit = async () => {
-    if (!category || !severity || !text.trim()) {
+    if (!category || !severity || !text.trim() || !name.trim()) {
       toast.error('נא למלא את כל השדות');
       return;
     }
+    localStorage.setItem(NAME_KEY, name.trim());
     const item: Feedback = {
       id: String(Date.now()),
+      name: name.trim(),
       category,
       severity,
       text: text.trim(),
@@ -111,6 +117,20 @@ export default function FeedbackModal() {
         </DialogHeader>
 
         <div className="space-y-4">
+          {/* Name */}
+          <div>
+            <label htmlFor="feedback-name" className="block font-semibold mb-1">שם</label>
+            <input
+              id="feedback-name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder="השם שלך"
+              className="w-full border rounded-lg p-2 text-sm min-h-[44px]"
+              dir="rtl"
+              aria-label="שם הממלא"
+            />
+          </div>
+
           {/* Category */}
           <div>
             <label className="block font-semibold mb-2">קטגוריה</label>
