@@ -59,6 +59,20 @@ export default function ChecklistTab() {
     [requiredDocs, checkedDocs]
   );
 
+  // Readiness score (1-10): required docs = 3 points each, recommended = 2, optional = 1
+  const readinessScore = useMemo(() => {
+    if (deduplicatedDocs.length === 0) return 0;
+    const weights = { required: 3, recommended: 2, optional: 1 };
+    const maxScore = deduplicatedDocs.reduce((sum, d) => sum + weights[d.priority], 0);
+    const currentScore = deduplicatedDocs.filter(d => checkedDocs[d.id]).reduce((sum, d) => sum + weights[d.priority], 0);
+    return maxScore > 0 ? Math.round((currentScore / maxScore) * 10) : 0;
+  }, [deduplicatedDocs, checkedDocs]);
+
+  const readinessLabel = readinessScore >= 8 ? 'מוכנות מלאה' : readinessScore >= 5 ? 'ניתן לכנס ועדה' : 'לא מוכן לכינוס ועדה';
+  const readinessColor = readinessScore >= 8 ? 'text-success' : readinessScore >= 5 ? 'text-warning' : 'text-destructive';
+  const readinessBg = readinessScore >= 8 ? 'bg-success/10 border-success' : readinessScore >= 5 ? 'bg-warning/10 border-warning' : 'bg-destructive/10 border-destructive';
+  const readinessIcon = readinessScore >= 8 ? '🟢' : readinessScore >= 5 ? '🟡' : '🔴';
+
   const toggleDoc = (docId: string) => {
     setCheckedDocs(prev => ({ ...prev, [docId]: !prev[docId] }));
   };
@@ -356,6 +370,47 @@ export default function ChecklistTab() {
                 value={totalDocs > 0 ? (checkedCount / totalDocs) * 100 : 0}
                 className={`h-4 rounded-full ${checkedCount === totalDocs && totalDocs > 0 ? '[&>div]:bg-success' : checkedCount >= totalDocs * 0.5 ? '[&>div]:bg-warning' : '[&>div]:bg-destructive'}`}
               />
+            </CardContent>
+          </Card>
+
+          {/* Readiness Score */}
+          <Card className={`border-2 ${readinessBg}`}>
+            <CardContent className="p-5">
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div className="flex items-center gap-4">
+                  <div className={`text-5xl font-extrabold ${readinessColor}`}>
+                    {readinessScore}
+                  </div>
+                  <div>
+                    <div className="text-sm text-muted-foreground">ציון מוכנות</div>
+                    <div className={`font-bold text-lg ${readinessColor}`}>
+                      {readinessIcon} {readinessLabel}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-1">
+                  {Array.from({ length: 10 }, (_, i) => (
+                    <div
+                      key={i}
+                      className={`w-4 h-8 rounded-sm transition-colors ${
+                        i < readinessScore
+                          ? readinessScore >= 8 ? 'bg-success' : readinessScore >= 5 ? 'bg-warning' : 'bg-destructive'
+                          : 'bg-muted/30'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+              {readinessScore < 5 && (
+                <p className="text-sm text-destructive mt-3 font-semibold">
+                  ⚠️ נדרשת השלמת מסמכים — לא ניתן לכנס ועדה מתחת לציון 5
+                </p>
+              )}
+              {readinessScore >= 5 && readinessScore < 8 && (
+                <p className="text-sm text-warning mt-3">
+                  ✅ ניתן לכנס ועדה — מומלץ להשלים מסמכים נוספים לחיזוק התיק
+                </p>
+              )}
             </CardContent>
           </Card>
 
