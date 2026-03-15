@@ -443,9 +443,9 @@ function DocRow({ d, i, on, toggle, accent, from, multi }: { d: DocumentItem; i:
       style={on ? { background: C.lBg } : {}}>
       <span className="font-bold w-5 text-center shrink-0 text-xs" style={{ color: accent }}>{i}</span>
       <div className="flex-1 min-w-0">
+        {from.length > 0 && <div className="text-[9px] font-semibold mb-0.5 px-1.5 py-0.5 rounded inline-block" style={{ color: C.blue, background: `${C.blue}10` }}>🏥 הוכחה עבור: {from.join(', ')}</div>}
         <div className={`font-semibold text-xs ${on ? 'line-through' : ''}`} style={{ color: on ? C.g3 : C.navy }}>{d.name}</div>
         {d.description && <div className="text-[10px] truncate" style={{ color: C.sec }}>{d.description}</div>}
-        {multi && from.length > 1 && <div className="text-[9px] mt-0.5" style={{ color: C.blue }}>🔗 משותף: {from.join(', ')}</div>}
       </div>
       <button onClick={toggle} aria-label={on ? `${d.name} הועלה` : `העלה ${d.name}`}
         className={`shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold min-h-[44px] transition flex items-center gap-1 border ${FR}`}
@@ -466,9 +466,9 @@ function CitizenCard({ d, on, toggle, from, multi }: { d: DocumentItem; on: bool
         {on && <Check className="h-3.5 w-3.5" />}
       </button>
       <div className="flex-1 min-w-0">
+        {from.length > 0 && <div className="text-[9px] font-semibold mb-1 px-1.5 py-0.5 rounded inline-block" style={{ color: C.blue, background: `${C.blue}10` }}>🏥 הוכחה עבור: {from.join(', ')}</div>}
         <div className={`font-semibold text-xs ${on ? 'line-through' : ''}`} style={{ color: on ? C.g3 : C.navy }}>{d.name}</div>
         {d.description && <div className="text-[10px] mt-0.5" style={{ color: C.sec }}>{d.description}</div>}
-        {multi && from.length > 1 && <div className="text-[9px] mt-0.5 font-medium" style={{ color: C.blue }}>🔗 רלוונטי ל: {from.join(', ')}</div>}
         {d.whereToGet && <div className="text-[10px] mt-1 font-medium" style={{ color: C.blue }}>📍 {d.whereToGet}</div>}
         {d.tip && <div className="text-[10px] mt-0.5 rounded px-1.5 py-0.5 inline-block" style={{ color: C.navy, background: '#fff7ed' }}>💡 {d.tip}</div>}
       </div>
