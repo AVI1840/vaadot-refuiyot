@@ -381,9 +381,9 @@ export default function ChecklistTab() {
           {/* Readiness Score */}
           <Card className={`border-2 ${readinessBg}`}>
             <CardContent className="p-5">
-              <div className="flex items-center justify-between flex-wrap gap-4">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className={`text-5xl font-extrabold ${readinessColor}`}>
+                  <div className={`text-4xl sm:text-5xl font-extrabold ${readinessColor}`}>
                     {readinessScore}
                   </div>
                   <div>
@@ -397,7 +397,7 @@ export default function ChecklistTab() {
                   {Array.from({ length: 10 }, (_, i) => (
                     <div
                       key={i}
-                      className={`w-4 h-8 rounded-sm transition-colors ${
+                      className={`w-3 sm:w-4 h-6 sm:h-8 rounded-sm transition-colors ${
                         i < readinessScore
                           ? readinessScore >= 8 ? 'bg-success' : readinessScore >= 5 ? 'bg-warning' : 'bg-destructive'
                           : 'bg-muted/30'

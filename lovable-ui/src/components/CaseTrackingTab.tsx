@@ -88,7 +88,7 @@ export default function CaseTrackingTab() {
                 placeholder="חפש תיק..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-60 min-h-[44px]"
+                className="w-full sm:w-60 min-h-[44px]"
                 aria-label="חיפוש תיק"
               />
               <Button variant="outline" onClick={exportCSV} className="min-h-[44px]">

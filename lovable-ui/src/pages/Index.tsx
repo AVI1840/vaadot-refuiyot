@@ -15,7 +15,7 @@ const Index = () => {
     <div className="min-h-screen flex flex-col font-heebo">
       <AppHeader activeTab={activeTab} onTabChange={setActiveTab} />
 
-      <main id="main-content" className="flex-1 max-w-[1200px] mx-auto w-full px-4 py-6" role="main">
+      <main id="main-content" className="flex-1 max-w-[1200px] mx-auto w-full px-3 sm:px-4 py-4 sm:py-6" role="main">
         {activeTab === 'about' && <AboutTab />}
         {activeTab === 'checklist' && <ChecklistTab />}
         {activeTab === 'dashboard' && <DashboardTab />}

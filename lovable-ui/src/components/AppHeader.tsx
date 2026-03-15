@@ -67,23 +67,25 @@ export default function AppHeader({ activeTab, onTabChange }: AppHeaderProps) {
         </div>
 
         {/* Navigation tabs */}
-        <nav className="mt-4 flex gap-1 flex-wrap" role="tablist" aria-label="ניווט ראשי">
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              role="tab"
-              aria-selected={activeTab === tab.id}
-              aria-label={tab.ariaLabel}
-              onClick={() => onTabChange(tab.id)}
-              className={`px-4 py-2.5 rounded-t-lg font-semibold text-sm transition-colors min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                activeTab === tab.id
-                  ? 'bg-background text-foreground'
-                  : 'text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <nav className="mt-4 -mx-4 px-4 overflow-x-auto scrollbar-hide" role="tablist" aria-label="ניווט ראשי">
+          <div className="flex gap-1 min-w-max">
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                aria-label={tab.ariaLabel}
+                onClick={() => onTabChange(tab.id)}
+                className={`px-3 md:px-4 py-2.5 rounded-t-lg font-semibold text-xs md:text-sm transition-colors min-h-[44px] whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                  activeTab === tab.id
+                    ? 'bg-background text-foreground'
+                    : 'text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </nav>
       </div>
     </header>

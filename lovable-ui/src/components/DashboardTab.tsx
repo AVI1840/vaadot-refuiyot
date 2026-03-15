@@ -38,11 +38,11 @@ export default function DashboardTab() {
       <div className="grid md:grid-cols-2 gap-6">
         <Card>
           <CardHeader><CardTitle>פילוח לפי תחום תביעה</CardTitle></CardHeader>
-          <CardContent>
+          <CardContent className="-mx-2 sm:mx-0">
             <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={domainData} layout="vertical" margin={{ right: 120 }}>
+              <BarChart data={domainData} layout="vertical" margin={{ right: 10, left: 0 }}>
                 <XAxis type="number" />
-                <YAxis type="category" dataKey="domain" width={130} tick={{ fontSize: 12 }} />
+                <YAxis type="category" dataKey="domain" width={90} tick={{ fontSize: 11 }} />
                 <Tooltip />
                 <Bar dataKey="count" radius={[0, 4, 4, 0]}>
                   {domainData.map((_, i) => (
@@ -56,11 +56,11 @@ export default function DashboardTab() {
 
         <Card>
           <CardHeader><CardTitle>15 אבחנות מובילות</CardTitle></CardHeader>
-          <CardContent>
+          <CardContent className="-mx-2 sm:mx-0">
             <ResponsiveContainer width="100%" height={400}>
-              <BarChart data={top15} layout="vertical" margin={{ right: 140 }}>
+              <BarChart data={top15} layout="vertical" margin={{ right: 10, left: 0 }}>
                 <XAxis type="number" />
-                <YAxis type="category" dataKey="name" width={150} tick={{ fontSize: 11 }} />
+                <YAxis type="category" dataKey="name" width={100} tick={{ fontSize: 10 }} />
                 <Tooltip />
                 <Bar dataKey="count" fill="#0368b0" radius={[0, 4, 4, 0]} />
               </BarChart>
@@ -73,7 +73,7 @@ export default function DashboardTab() {
       <Card>
         <CardHeader><CardTitle>5 אבחנות MVP לפיילוט</CardTitle></CardHeader>
         <CardContent>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             {mvp.map((g, i) => (
               <div key={g.id} className="border-2 border-accent rounded-xl p-4 text-center">
                 <div className="text-2xl font-bold text-accent mb-1">{i + 1}</div>

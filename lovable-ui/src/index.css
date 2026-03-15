@@ -193,3 +193,27 @@
 .print-only {
   display: none;
 }
+
+/* Hide scrollbar but keep scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile improvements */
+@media (max-width: 640px) {
+  h1 { font-size: 20px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
+
+  .font-size-large h1 { font-size: 24px; }
+  .font-size-large h2 { font-size: 20px; }
+  .font-size-large h3 { font-size: 18px; }
+
+  .font-size-xlarge h1 { font-size: 28px; }
+  .font-size-xlarge h2 { font-size: 24px; }
+  .font-size-xlarge h3 { font-size: 20px; }
+}
