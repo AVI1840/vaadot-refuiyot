@@ -33,11 +33,10 @@ export default function InfoTab() {
           <div className="grid sm:grid-cols-2 gap-3">
             {[
               { icon: '🏥', title: 'ועדה לנכות כללית', desc: 'קביעת אחוזי נכות רפואית לזכאות לקצבת נכות' },
+              { icon: '👶', title: 'ועדה לילד נכה', desc: 'קביעת זכאות לגמלת ילד נכה' },
               { icon: '⚒️', title: 'ועדה לנפגעי עבודה', desc: 'קביעת נכות מתאונת עבודה או מחלת מקצוע' },
               { icon: '🚗', title: 'ועדה לניידות', desc: 'קביעת זכאות לקצבת ניידות ורכב רפואי' },
-              { icon: '👴', title: 'ועדה לסיעוד', desc: 'קביעת רמת תלות וזכאות לגמלת סיעוד' },
               { icon: '⚖️', title: 'ועדת ערר', desc: 'ערעור על החלטת ועדה רפואית קודמת' },
-              { icon: '👶', title: 'ועדה לילד נכה', desc: 'קביעת זכאות לגמלת ילד נכה' },
             ].map((ct, i) => (
               <div key={i} className="p-3 border rounded-xl bg-muted/10">
                 <div className="text-2xl mb-1">{ct.icon}</div>

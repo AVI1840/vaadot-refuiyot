@@ -253,6 +253,6 @@ export const getTop15Diagnoses = () => {
     .map(g => ({ name: g.name, count: g.documents.length }));
 };
 export const getMVPDiagnoses = () => {
-  const mvpNames = ['כאבי גב', 'מחלת לב איסכמית', 'תסמונת התעלה הקרפלית', 'סוכרת', 'COPD'];
+  const mvpNames = ['כאבי גב', 'סוכרת', 'דיכאון', 'מחלת לב איסכמית', 'אוטיזם'];
   return diagnosisGroups.filter(g => mvpNames.includes(g.name));
 };

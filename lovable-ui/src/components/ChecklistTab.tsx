@@ -12,9 +12,9 @@ import { toast } from 'sonner';
 
 const COMMITTEE_TYPES = [
   { id: 'general', icon: '🏥', title: 'ועדה רפואית לנכות כללית', desc: 'קביעת אחוזי נכות רפואית' },
+  { id: 'child', icon: '👶', title: 'ועדה רפואית לילד נכה', desc: 'קביעת זכאות לגמלת ילד נכה' },
   { id: 'work', icon: '⚒️', title: 'ועדה רפואית לנפגעי עבודה', desc: 'נכות מתאונת עבודה או מחלת מקצוע' },
   { id: 'mobility', icon: '🚗', title: 'ועדה רפואית לניידות', desc: 'זכאות לקצבת ניידות' },
-  { id: 'nursing', icon: '👴', title: 'ועדה רפואית לסיעוד', desc: 'קביעת רמת תלות' },
   { id: 'appeal', icon: '⚖️', title: 'ועדת ערר', desc: 'ערעור על החלטת ועדה קודמת' },
 ];
 
