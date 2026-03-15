@@ -3,6 +3,7 @@ import AppHeader from '@/components/AppHeader';
 import AppFooter from '@/components/AppFooter';
 import AboutTab from '@/components/AboutTab';
 import ChecklistTab from '@/components/ChecklistTab';
+import SystemMockupTab from '@/components/SystemMockupTab';
 import DashboardTab from '@/components/DashboardTab';
 import CaseTrackingTab from '@/components/CaseTrackingTab';
 import InfoTab from '@/components/InfoTab';
@@ -18,6 +19,7 @@ const Index = () => {
       <main id="main-content" className="flex-1 max-w-[1200px] mx-auto w-full px-3 sm:px-4 py-4 sm:py-6" role="main">
         {activeTab === 'about' && <AboutTab />}
         {activeTab === 'checklist' && <ChecklistTab />}
+        {activeTab === 'mockup' && <SystemMockupTab />}
         {activeTab === 'dashboard' && <DashboardTab />}
         {activeTab === 'tracking' && <CaseTrackingTab />}
         {activeTab === 'info' && <InfoTab />}

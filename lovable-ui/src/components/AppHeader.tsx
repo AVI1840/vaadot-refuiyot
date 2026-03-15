@@ -10,6 +10,7 @@ interface AppHeaderProps {
 const tabs = [
   { id: 'about', label: '📌 אודות הפרויקט', ariaLabel: 'אודות הפרויקט' },
   { id: 'checklist', label: '📋 הכנת צ\'קליסט', ariaLabel: 'הכנת צ\'קליסט מסמכים' },
+  { id: 'mockup', label: '🖥️ מוקאפ מערכת', ariaLabel: 'מוקאפ שילוב במערכת' },
   { id: 'dashboard', label: '📊 דשבורד ניהולי', ariaLabel: 'דשבורד סטטיסטי' },
   { id: 'tracking', label: '📈 מעקב תיקים', ariaLabel: 'מעקב תיקים' },
   { id: 'info', label: 'ℹ️ מידע למבוטח', ariaLabel: 'מידע למבוטח על ועדות רפואיות' },
