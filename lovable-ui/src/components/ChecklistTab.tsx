@@ -10,17 +10,21 @@ import { Textarea } from '@/components/ui/textarea';
 import { Copy, Printer, Send, Save, ArrowRight, ArrowLeft, Check, Mail, Info, MapPin, Lightbulb } from 'lucide-react';
 import { toast } from 'sonner';
 
-const COMMITTEE_TYPES = [
-  { id: 'general', icon: '🏥', title: 'ועדה רפואית לנכות כללית', desc: 'קביעת אחוזי נכות רפואית' },
-  { id: 'child', icon: '👶', title: 'ועדה רפואית לילד נכה', desc: 'קביעת זכאות לגמלת ילד נכה' },
-  { id: 'work', icon: '⚒️', title: 'ועדה רפואית לנפגעי עבודה', desc: 'נכות מתאונת עבודה או מחלת מקצוע' },
-  { id: 'mobility', icon: '🚗', title: 'ועדה רפואית לניידות', desc: 'זכאות לקצבת ניידות' },
-  { id: 'appeal', icon: '⚖️', title: 'ועדת ערר', desc: 'ערעור על החלטת ועדה קודמת' },
+const PROBLEM_AREAS = [
+  { id: 'orthopedic', icon: '🦴', title: 'בעיות עצמות ומפרקים', desc: 'כאבי גב, ברכיים, כתף, שברים', domains: ['נכות', 'נכות מעבודה'] },
+  { id: 'internal', icon: '🫀', title: 'מחלות פנימיות', desc: 'לב, סוכרת, כליות, כבד', domains: ['נכות'] },
+  { id: 'mental', icon: '🧠', title: 'בריאות הנפש', desc: 'דיכאון, חרדה, PTSD', domains: ['נכות'] },
+  { id: 'neuro', icon: '⚡', title: 'בעיות נוירולוגיות', desc: 'אפילפסיה, נוירופתיה, פגיעות ראש', domains: ['נכות', 'נפגעי פעולות איבה'] },
+  { id: 'child', icon: '👶', title: 'ילדים — התפתחות ומוגבלות', desc: 'אוטיזם, ADHD, לקויות למידה', domains: ['ילד נכה'] },
+  { id: 'work', icon: '⚒️', title: 'פגיעה בעבודה', desc: 'תאונת עבודה, מחלת מקצוע', domains: ['נכות מעבודה'] },
+  { id: 'hostile', icon: '🛡️', title: 'נפגעי פעולות איבה', desc: 'פגיעות מאירועי טרור או מלחמה', domains: ['נפגעי פעולות איבה'] },
+  { id: 'special', icon: '♿', title: 'שירותים מיוחדים', desc: 'קטיעה, שיתוק, עיוורון, חירשות', domains: ['שירותים מיוחדים'] },
+  { id: 'all', icon: '📋', title: 'הצג הכל', desc: 'כל האבחנות בכל התחומים', domains: [] },
 ];
 
 export default function ChecklistTab() {
   const [step, setStep] = useState(1);
-  const [selectedCommittee, setSelectedCommittee] = useState<string>('');
+  const [selectedArea, setSelectedArea] = useState<string>('');
   const [selectedDiagnoses, setSelectedDiagnoses] = useState<string[]>([]);
   const [checkedDocs, setCheckedDocs] = useState<Record<string, boolean>>({});
   const [claimantName, setClaimantName] = useState('');
@@ -78,9 +82,19 @@ export default function ChecklistTab() {
   };
 
   const filteredDiagnosisGroups = useMemo(() => {
-    if (!searchTerm) return diagnosisGroups;
-    return diagnosisGroups.filter(g => g.name.includes(searchTerm));
-  }, [searchTerm]);
+    let groups = diagnosisGroups;
+    // Filter by selected problem area
+    if (selectedArea && selectedArea !== 'all') {
+      const area = PROBLEM_AREAS.find(a => a.id === selectedArea);
+      if (area && area.domains.length > 0) {
+        groups = groups.filter(g => area.domains.includes(g.domain));
+      }
+    }
+    if (searchTerm) {
+      groups = groups.filter(g => g.name.includes(searchTerm));
+    }
+    return groups;
+  }, [searchTerm, selectedArea]);
 
   const groupedByDomain = useMemo(() => {
     const map: Record<string, DiagnosisGroup[]> = {};
@@ -114,7 +128,7 @@ export default function ChecklistTab() {
   };
   const handlePrint = () => window.print();
   const handleSave = () => {
-    const data = { selectedCommittee, selectedDiagnoses, checkedDocs, claimantName, savedAt: new Date().toISOString() };
+    const data = { selectedArea, selectedDiagnoses, checkedDocs, claimantName, savedAt: new Date().toISOString() };
     localStorage.setItem('btl-checklist-save', JSON.stringify(data));
     toast.success('הצ׳קליסט נשמר בהצלחה');
   };
@@ -203,17 +217,15 @@ export default function ChecklistTab() {
       {/* Step indicator */}
       <div className="flex items-center justify-center gap-2" role="group" aria-label="שלבי הוויזארד">
         {[
-          { num: 1, label: 'סוג ועדה' },
-          { num: 2, label: 'אבחנות' },
-          { num: 3, label: 'צ׳קליסט' },
+          { num: 1, label: 'מה הבעיה?' },
+          { num: 2, label: 'צ׳קליסט' },
         ].map(s => (
           <div key={s.num} className="flex items-center gap-2">
             <div className="flex flex-col items-center gap-1">
               <button
                 onClick={() => {
                   if (s.num === 1) setStep(1);
-                  else if (s.num === 2 && selectedCommittee) setStep(2);
-                  else if (s.num === 3 && selectedDiagnoses.length > 0) setStep(3);
+                  else if (s.num === 2 && selectedDiagnoses.length > 0) setStep(2);
                 }}
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-colors min-w-[44px] min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                   step === s.num ? 'bg-secondary text-secondary-foreground' :
@@ -227,133 +239,126 @@ export default function ChecklistTab() {
               </button>
               <span className="text-[11px] text-muted-foreground">{s.label}</span>
             </div>
-            {s.num < 3 && <div className={`w-12 h-1 rounded mb-5 ${step > s.num ? 'bg-success' : 'bg-muted/30'}`} />}
+            {s.num < 2 && <div className={`w-12 h-1 rounded mb-5 ${step > s.num ? 'bg-success' : 'bg-muted/30'}`} />}
           </div>
         ))}
       </div>
 
-      {/* Step 1 */}
+      {/* Step 1 — Choose problem area and diagnosis */}
       {step === 1 && (
         <div className="space-y-4">
-          <h2 className="text-center">שלב 1 — סוג הוועדה</h2>
-          <p className="text-center text-muted-foreground">בחר את סוג הוועדה הרפואית שאליה אתה מוזמן</p>
-          <div className="grid md:grid-cols-2 gap-4 max-w-[800px] mx-auto">
-            {COMMITTEE_TYPES.map(ct => (
+          <h2 className="text-center">מה הבעיה הרפואית שלך?</h2>
+          <p className="text-center text-muted-foreground">בחר את התחום שמתאר את הבעיה שלך, ואז בחר אבחנה ספציפית</p>
+
+          {/* Problem area cards */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 max-w-[800px] mx-auto">
+            {PROBLEM_AREAS.map(area => (
               <button
-                key={ct.id}
-                onClick={() => { setSelectedCommittee(ct.id); setStep(2); }}
-                className={`text-right p-5 rounded-xl border-2 transition-all min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:shadow-md ${
-                  selectedCommittee === ct.id
+                key={area.id}
+                onClick={() => setSelectedArea(area.id)}
+                className={`text-right p-4 rounded-xl border-2 transition-all min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:shadow-md ${
+                  selectedArea === area.id
                     ? 'border-accent bg-accent/10 shadow-md'
                     : 'border-border bg-card hover:border-secondary/50'
                 }`}
-                aria-label={ct.title}
-                aria-pressed={selectedCommittee === ct.id}
+                aria-label={area.title}
+                aria-pressed={selectedArea === area.id}
               >
-                <div className="text-3xl mb-2">{ct.icon}</div>
-                <div className="font-bold text-foreground text-lg">{ct.title}</div>
-                <div className="text-muted-foreground text-sm mt-1">{ct.desc}</div>
+                <div className="text-2xl mb-1">{area.icon}</div>
+                <div className="font-bold text-foreground text-sm">{area.title}</div>
+                <div className="text-muted-foreground text-xs mt-1">{area.desc}</div>
               </button>
             ))}
           </div>
-        </div>
-      )}
 
-      {/* Step 2 */}
-      {step === 2 && (
-        <div className="space-y-4">
-          <div className="flex items-center justify-between flex-wrap gap-2">
-            <h2>שלב 2 — בחירת תחום רפואי ואבחנות</h2>
-            <Button variant="ghost" onClick={() => setStep(1)} className="min-h-[44px]" aria-label="חזור לשלב 1">
-              <ArrowRight className="h-4 w-4 ml-1" />
-              חזרה
-            </Button>
-          </div>
-          <p className="text-muted-foreground">בחר אבחנה אחת או יותר. ניתן לבחור ממספר תחומים.</p>
+          {/* Diagnosis selection — shown after area is picked */}
+          {selectedArea && (
+            <div className="space-y-3 mt-4">
+              <Input
+                placeholder="🔍 חפש אבחנה..."
+                value={searchTerm}
+                onChange={e => setSearchTerm(e.target.value)}
+                className="max-w-md mx-auto min-h-[44px]"
+                aria-label="חיפוש אבחנה"
+              />
 
-          <Input
-            placeholder="🔍 חפש אבחנה..."
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-            className="max-w-md min-h-[44px]"
-            aria-label="חיפוש אבחנה"
-          />
+              {selectedDiagnoses.length > 0 && (
+                <Card className="border-accent/30 bg-accent/5">
+                  <CardContent className="p-3">
+                    <div className="flex flex-wrap gap-2 items-center">
+                      <span className="text-sm font-bold text-accent-foreground">נבחרו {selectedDiagnoses.length}:</span>
+                      {selectedDiagnoses.map(id => {
+                        const g = diagnosisGroups.find(x => x.id === id);
+                        return g ? (
+                          <Badge
+                            key={id}
+                            className="bg-secondary text-secondary-foreground cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                            onClick={() => toggleDiagnosis(id)}
+                            role="button"
+                            aria-label={`הסר ${g.name}`}
+                          >
+                            {g.name} ✕
+                          </Badge>
+                        ) : null;
+                      })}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
-          {selectedDiagnoses.length > 0 && (
-            <Card className="border-accent/30 bg-accent/5">
-              <CardContent className="p-3">
-                <div className="flex flex-wrap gap-2 items-center">
-                  <span className="text-sm font-bold text-accent-foreground">נבחרו {selectedDiagnoses.length}:</span>
-                  {selectedDiagnoses.map(id => {
-                    const g = diagnosisGroups.find(x => x.id === id);
-                    return g ? (
-                      <Badge
-                        key={id}
-                        className="bg-secondary text-secondary-foreground cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors"
-                        onClick={() => toggleDiagnosis(id)}
-                        role="button"
-                        aria-label={`הסר ${g.name}`}
-                      >
-                        {g.name} ✕
-                      </Badge>
-                    ) : null;
-                  })}
+              <div className="space-y-3">
+                {Object.entries(groupedByDomain).map(([domain, groups]) => (
+                  <Card key={domain}>
+                    <CardHeader className="py-3 pb-2">
+                      <CardTitle className="text-base flex items-center gap-2">
+                        {domain}
+                        <Badge variant="outline" className="text-[10px]">{groups.length} אבחנות</Badge>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="flex flex-wrap gap-2 pb-4">
+                      {groups.map(g => (
+                        <button
+                          key={g.id}
+                          onClick={() => toggleDiagnosis(g.id)}
+                          className={`px-3 py-2 rounded-full text-sm font-medium border transition-all min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+                            selectedDiagnoses.includes(g.id)
+                              ? 'bg-secondary text-secondary-foreground border-secondary shadow-sm'
+                              : 'bg-card text-foreground border-border hover:border-secondary/50 hover:bg-secondary/5'
+                          }`}
+                          aria-pressed={selectedDiagnoses.includes(g.id)}
+                          aria-label={`${g.name} — ${g.documents.length} מסמכים`}
+                        >
+                          {g.name}
+                          <span className="mr-1 text-xs opacity-70">({g.documents.length})</span>
+                        </button>
+                      ))}
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+
+              {selectedDiagnoses.length > 0 && (
+                <div className="flex justify-center sticky bottom-4">
+                  <Button
+                    onClick={() => setStep(2)}
+                    className="min-h-[48px] bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 shadow-lg text-base"
+                  >
+                    <ArrowLeft className="h-5 w-5 ml-2" />
+                    הראה לי מה צריך להביא ({selectedDiagnoses.length} אבחנות, {deduplicatedDocs.length} מסמכים)
+                  </Button>
                 </div>
-              </CardContent>
-            </Card>
-          )}
-
-          <div className="space-y-3">
-            {Object.entries(groupedByDomain).map(([domain, groups]) => (
-              <Card key={domain}>
-                <CardHeader className="py-3 pb-2">
-                  <CardTitle className="text-base flex items-center gap-2">
-                    {domain}
-                    <Badge variant="outline" className="text-[10px]">{groups.length} אבחנות</Badge>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-2 pb-4">
-                  {groups.map(g => (
-                    <button
-                      key={g.id}
-                      onClick={() => toggleDiagnosis(g.id)}
-                      className={`px-3 py-2 rounded-full text-sm font-medium border transition-all min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
-                        selectedDiagnoses.includes(g.id)
-                          ? 'bg-secondary text-secondary-foreground border-secondary shadow-sm'
-                          : 'bg-card text-foreground border-border hover:border-secondary/50 hover:bg-secondary/5'
-                      }`}
-                      aria-pressed={selectedDiagnoses.includes(g.id)}
-                      aria-label={`${g.name} — ${g.documents.length} מסמכים`}
-                    >
-                      {g.name}
-                      <span className="mr-1 text-xs opacity-70">({g.documents.length})</span>
-                    </button>
-                  ))}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {selectedDiagnoses.length > 0 && (
-            <div className="flex justify-center sticky bottom-4">
-              <Button
-                onClick={() => setStep(3)}
-                className="min-h-[48px] bg-secondary text-secondary-foreground hover:bg-secondary/90 px-8 shadow-lg text-base"
-              >
-                <ArrowLeft className="h-5 w-5 ml-2" />
-                המשך לצ׳קליסט ({selectedDiagnoses.length} אבחנות, {deduplicatedDocs.length} מסמכים)
-              </Button>
+              )}
             </div>
           )}
         </div>
       )}
 
-      {/* Step 3 */}
-      {step === 3 && (
+      {/* Step 2 — Checklist */}
+      {step === 2 && (
         <div className="space-y-6">
           <div className="flex items-center justify-between flex-wrap gap-2">
-            <h2>שלב 3 — הצ׳קליסט שלך</h2>
-            <Button variant="ghost" onClick={() => setStep(2)} className="min-h-[44px]" aria-label="חזור לשלב 2">
+            <h2>מה צריך להביא</h2>
+            <Button variant="ghost" onClick={() => setStep(1)} className="min-h-[44px]" aria-label="חזור לשלב 1">
               <ArrowRight className="h-4 w-4 ml-1" />
               חזרה
             </Button>

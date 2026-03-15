@@ -96,8 +96,8 @@ export default function AboutTab() {
           <div className="grid sm:grid-cols-4 gap-4">
             <div className="text-center p-4 bg-muted/20 rounded-xl">
               <div className="text-3xl mb-2">1️⃣</div>
-              <div className="font-bold">בחירת אבחנה</div>
-              <p className="text-sm text-muted-foreground mt-1">האזרח בוחר סוג ועדה ואבחנה</p>
+              <div className="font-bold">בחירת בעיה</div>
+              <p className="text-sm text-muted-foreground mt-1">האזרח מציין את הבעיה הרפואית ובוחר אבחנה</p>
             </div>
             <div className="text-center p-4 bg-muted/20 rounded-xl">
               <div className="text-3xl mb-2">2️⃣</div>

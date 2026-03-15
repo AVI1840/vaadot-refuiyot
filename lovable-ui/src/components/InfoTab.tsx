@@ -62,7 +62,7 @@ export default function InfoTab() {
             <div className="flex items-start gap-2">
               <span className="text-lg">2️⃣</span>
               <div>
-                <span className="font-bold">בדוק מה נדרש</span> — השתמש בצ׳קליסט המסמכים שלנו כדי לדעת בדיוק מה להביא לפי האבחנה שלך.
+                <span className="font-bold">בדוק מה נדרש</span> — ציין את הבעיה הרפואית שלך ותקבל רשימה ברורה של מסמכים שצריך להביא.
               </div>
             </div>
             <div className="flex items-start gap-2">
