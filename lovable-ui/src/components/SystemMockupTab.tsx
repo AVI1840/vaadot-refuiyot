@@ -1,11 +1,10 @@
 import { useState, useMemo } from 'react';
 import { diagnosisGroups, getMVPDiagnoses } from '@/data/diagnoses';
-import type { DocumentItem } from '@/data/diagnoses';
-import { Check, Upload, CheckCircle2, AlertCircle, Info, HelpCircle, User, Phone, Search, X } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import type { DocumentItem, DiagnosisGroup } from '@/data/diagnoses';
+import { Check, Upload, FileText, AlertCircle, Info, ChevronDown, ChevronUp, Search, X, User, Phone } from 'lucide-react';
 
-/* [BTL-ADAPTED] Official BTL Design System palette — NO GREEN */
-const B = {
+/* BTL Design System — NO GREEN anywhere */
+const C = {
   navy: '#0c3058',
   blue: '#0368b0',
   blueH: '#025a8f',
@@ -13,328 +12,288 @@ const B = {
   sec: '#266794',
   lBg: '#e8f3ff',
   pBg: '#f5f9ff',
-  cBrd: 'rgba(0,0,0,0.1)',
-  cShd: '0 2px 8px rgba(6,77,173,0.1)',
   w: '#fff',
   g1: '#f3f4f6',
   g2: '#e5e7eb',
   g3: '#d1d5db',
   g5: '#6b7280',
   g7: '#374151',
-  ok: '#0368b0', okBg: '#e8f3ff',       /* was green — now BTL blue */
-  wn: '#c2410c', wnBg: '#fff7ed',
-  er: '#b91c1c', erBg: '#fef2f2',
+  g9: '#111827',
+  wn: '#c2410c',
+  er: '#b91c1c',
 };
 
-/* Pill colors for multi-diagnosis tags */
-const PILL_COLORS = [
-  { bg: '#0c3058', text: '#fff' },
-  { bg: '#0368b0', text: '#fff' },
-  { bg: '#266794', text: '#fff' },
-  { bg: '#0068f5', text: '#fff' },
-];
+const FR = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068f5] focus-visible:ring-offset-2';
 
-const STEPS = [
-  { n: 1, label: 'פרטי התובע', s: 'done' },
-  { n: 2, label: 'פרטי הנכות', s: 'done' },
-  { n: 3, label: 'מסמכים רפואיים', s: 'active' },
-  { n: 4, label: 'תצהיר ומידע', s: '' },
-  { n: 5, label: 'הצהרות ושליחה', s: '' },
-];
+/* Circular progress SVG */
+function CircleProgress({ pct, size = 72, stroke = 6 }: { pct: number; size?: number; stroke?: number }) {
+  const r = (size - stroke) / 2;
+  const circ = 2 * Math.PI * r;
+  const offset = circ - (pct / 100) * circ;
+  // Color: red < 50%, orange 50-79%, blue >= 80%
+  const color = pct >= 80 ? C.blue : pct >= 50 ? C.wn : C.er;
+  return (
+    <svg width={size} height={size} className="transform -rotate-90">
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={C.g2} strokeWidth={stroke} />
+      <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={stroke}
+        strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round"
+        style={{ transition: 'stroke-dashoffset 0.5s ease, stroke 0.3s ease' }} />
+    </svg>
+  );
+}
 
 const CLAIMS = [
   { id: 'child' as const, label: 'ילד נכה', icon: '👶', domain: 'ילד נכה' },
   { id: 'general' as const, label: 'נכות כללית', icon: '🏥', domain: 'נכות' },
 ];
 
-const MAX_DIAG = 4;
+const MAX_SEL = 4;
+const PILL_BG = [C.navy, C.blue, C.sec, C.act];
 
 export default function SystemMockupTab() {
   const mvp = getMVPDiagnoses();
-  const [claim, setClaim] = useState<'child'|'general'>('child');
-  const [selIds, setSelIds] = useState<string[]>(() => {
-    const first = mvp.find(g => g.name === 'אוטיזם');
-    return first ? [first.id] : mvp.length ? [mvp[0].id] : [];
-  });
-  const [docs, setDocs] = useState<Record<string, boolean>>({});
-  const [view, setView] = useState<'clerk'|'citizen'>('clerk');
+  const [claim, setClaim] = useState<'child' | 'general'>('child');
+  const [selIds, setSelIds] = useState<string[]>([]);
+  const [checked, setChecked] = useState<Record<string, boolean>>({});
+  const [view, setView] = useState<'clerk' | 'citizen'>('clerk');
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQ, setSearchQ] = useState('');
 
   const dom = CLAIMS.find(c => c.id === claim)!.domain;
-  const filt = useMemo(() => mvp.filter(g => g.domain === dom), [dom, mvp]);
-  const selGroups = useMemo(() => selIds.map(id => diagnosisGroups.find(x => x.id === id)).filter(Boolean) as typeof diagnosisGroups, [selIds]);
+  const available = useMemo(() => mvp.filter(g => g.domain === dom), [dom, mvp]);
 
-  /* Merge & deduplicate documents across all selected diagnoses by name */
+  // All diagnoses in this domain for search
+  const allInDomain = useMemo(() => diagnosisGroups.filter(g => g.domain === dom), [dom]);
+  const searchResults = useMemo(() => {
+    if (!searchQ.trim()) return allInDomain.filter(g => !selIds.includes(g.id));
+    return allInDomain.filter(g => !selIds.includes(g.id) && g.name.includes(searchQ));
+  }, [allInDomain, selIds, searchQ]);
+
+  const selGroups = useMemo(() =>
+    selIds.map(id => diagnosisGroups.find(x => x.id === id)).filter(Boolean) as DiagnosisGroup[],
+    [selIds]);
+
+  /* Merge & deduplicate documents across selected diagnoses by name */
   const merged = useMemo(() => {
-    const seen = new Map<string, { doc: DocumentItem; fromGroups: string[] }>();
+    const seen = new Map<string, { doc: DocumentItem; from: string[] }>();
     for (const g of selGroups) {
       for (const d of g.documents) {
-        const existing = seen.get(d.name);
-        if (existing) {
-          existing.fromGroups.push(g.name);
-          // Upgrade priority: required > recommended > optional
-          const prio: Record<string, number> = { required: 3, recommended: 2, optional: 1 };
-          if (prio[d.priority] > prio[existing.doc.priority]) {
-            existing.doc = { ...d, priority: d.priority };
-          }
+        const ex = seen.get(d.name);
+        if (ex) {
+          if (!ex.from.includes(g.name)) ex.from.push(g.name);
+          const p: Record<string, number> = { required: 3, recommended: 2, optional: 1 };
+          if (p[d.priority] > p[ex.doc.priority]) ex.doc = { ...d };
         } else {
-          seen.set(d.name, { doc: d, fromGroups: [g.name] });
+          seen.set(d.name, { doc: d, from: [g.name] });
         }
       }
     }
     return Array.from(seen.values());
   }, [selGroups]);
 
-  const req = useMemo(() => merged.filter(m => m.doc.priority === 'required'), [merged]);
-  const recOpt = useMemo(() => merged.filter(m => m.doc.priority !== 'required'), [merged]);
+  const reqDocs = useMemo(() => merged.filter(m => m.doc.priority === 'required'), [merged]);
+  const recDocs = useMemo(() => merged.filter(m => m.doc.priority !== 'required'), [merged]);
+  const reqDone = reqDocs.filter(m => checked[m.doc.id]).length;
+  const reqPct = reqDocs.length > 0 ? Math.round((reqDone / reqDocs.length) * 100) : 0;
+  const sharedCount = merged.filter(m => m.from.length > 1).length;
 
-  const wt: Record<string, number> = { required: 3, recommended: 2, optional: 1 };
-  const mx = merged.reduce((s, m) => s + wt[m.doc.priority], 0);
-  const cr = merged.filter(m => docs[m.doc.id]).reduce((s, m) => s + wt[m.doc.priority], 0);
-  const score = mx > 0 ? Math.round((cr / mx) * 10) : 0;
-  const rDone = req.filter(m => docs[m.doc.id]).length;
-
-  const toggle = (id: string) => setDocs(p => ({ ...p, [id]: !p[id] }));
-  const sCol = score >= 8 ? B.ok : score >= 5 ? B.wn : B.er;
-  const sBg = score >= 8 ? B.okBg : score >= 5 ? B.wnBg : B.erBg;
-  const sLbl = score >= 8 ? 'מוכנות מלאה' : score >= 5 ? 'ניתן לכנס ועדה' : 'חסרים מסמכים';
-
-  const pickClaim = (id: 'child'|'general') => {
-    setClaim(id); setDocs({}); setSelIds([]);
+  const toggle = (id: string) => setChecked(p => ({ ...p, [id]: !p[id] }));
+  const pickClaim = (id: 'child' | 'general') => { setClaim(id); setSelIds([]); setChecked({}); };
+  const addDiag = (id: string) => {
+    if (selIds.length >= MAX_SEL || selIds.includes(id)) return;
+    setSelIds(p => [...p, id]); setChecked({}); setSearchOpen(false); setSearchQ('');
   };
-
-  const toggleDiag = (id: string) => {
-    setDocs({});
-    setSelIds(prev => {
-      if (prev.includes(id)) return prev.filter(x => x !== id);
-      if (prev.length >= MAX_DIAG) return prev;
-      return [...prev, id];
-    });
-  };
-
-  const removeDiag = (id: string) => {
-    setDocs({});
-    setSelIds(prev => prev.filter(x => x !== id));
-  };
-
-  const fRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0068f5] focus-visible:ring-offset-2';
-
-  const sharedCount = merged.filter(m => m.fromGroups.length > 1).length;
+  const removeDiag = (id: string) => { setSelIds(p => p.filter(x => x !== id)); setChecked({}); };
 
   return (
-    <div className="max-w-[1100px] mx-auto space-y-3" dir="rtl" lang="he">
-      {/* Header badge */}
-      <div className="text-center" role="status">
-        <Badge className="text-sm px-4 py-1" style={{background:B.lBg,color:B.navy}}>🖥️ אב טיפוס מבצעי — הלוגיקה בתוך ה-UI הארגוני</Badge>
-        <p className="text-xs mt-1" style={{color:B.sec}}>בחר סוג תביעה → עד {MAX_DIAG} ליקויים → מסמכים ממוזגים → ציון מוכנות בזמן אמת</p>
-      </div>
-
-      {/* Controls */}
+    <div className="max-w-[1100px] mx-auto space-y-4" dir="rtl" lang="he">
+      {/* View toggle + claim type */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-2">
-        <div className="flex gap-1 rounded-lg p-0.5" style={{background:B.g1}} role="tablist" aria-label="תצוגה">
-          {(['clerk','citizen'] as const).map(v=>(
-            <button key={v} role="tab" aria-selected={view===v} onClick={()=>setView(v)}
-              className={`px-4 py-2 rounded-md text-xs font-bold min-h-[44px] transition-all ${fRing} ${view===v?'bg-white shadow-sm':''}`}
-              style={{color:view===v?B.navy:B.g5}}>
-              {v==='clerk'?'🏢 מסך פקיד (DocClaim)':'👤 מסך אזרח (btl.gov.il)'}
+        <div className="flex gap-1 rounded-lg p-0.5" style={{ background: C.g1 }} role="tablist">
+          {(['clerk', 'citizen'] as const).map(v => (
+            <button key={v} role="tab" aria-selected={view === v} onClick={() => setView(v)}
+              className={`px-4 py-2 rounded-md text-xs font-bold min-h-[44px] transition ${FR} ${view === v ? 'bg-white shadow-sm' : ''}`}
+              style={{ color: view === v ? C.navy : C.g5 }}>
+              {v === 'clerk' ? '🏢 מסך פקיד (DocClaim)' : '👤 מסך אזרח (btl.gov.il)'}
             </button>
           ))}
         </div>
         <div className="flex gap-1" role="radiogroup" aria-label="סוג תביעה">
-          {CLAIMS.map(ct=>(
-            <button key={ct.id} role="radio" aria-checked={claim===ct.id} onClick={()=>pickClaim(ct.id)}
-              className={`px-3 py-1.5 rounded-lg text-[11px] font-bold border min-h-[44px] transition ${fRing} ${claim===ct.id?'text-white':'bg-white hover:border-[#0368b0]'}`}
-              style={claim===ct.id?{background:B.navy,borderColor:B.navy}:{borderColor:B.g3,color:B.g5}}>
+          {CLAIMS.map(ct => (
+            <button key={ct.id} role="radio" aria-checked={claim === ct.id} onClick={() => pickClaim(ct.id)}
+              className={`px-3 py-1.5 rounded-lg text-[11px] font-bold border min-h-[44px] transition ${FR}`}
+              style={claim === ct.id ? { background: C.navy, borderColor: C.navy, color: C.w } : { borderColor: C.g3, color: C.g5, background: C.w }}>
               {ct.icon} {ct.label}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Multi-select diagnosis toggles */}
-      <div className="flex gap-1.5 flex-wrap justify-center" role="group" aria-label="בחירת ליקויים (עד 4)">
-        {filt.map(x => {
-          const isOn = selIds.includes(x.id);
-          const idx = selIds.indexOf(x.id);
-          const pill = idx >= 0 ? PILL_COLORS[idx % PILL_COLORS.length] : null;
-          return (
-            <button key={x.id} onClick={()=>toggleDiag(x.id)}
-              aria-pressed={isOn}
-              disabled={!isOn && selIds.length >= MAX_DIAG}
-              className={`px-3 py-1.5 rounded-full text-[11px] font-semibold border min-h-[36px] transition ${fRing} ${
-                !isOn && selIds.length >= MAX_DIAG ? 'opacity-40 cursor-not-allowed' : ''}`}
-              style={isOn && pill
-                ? {background:pill.bg,borderColor:pill.bg,color:pill.text}
-                : {borderColor:B.g3,color:B.g5,background:B.w}}>
-              {isOn && <span className="ml-1">✓</span>}{x.name}
-            </button>
-          );
-        })}
-      </div>
-      {selIds.length === 0 && (
-        <p className="text-center text-xs" style={{color:B.wn}}>⚠️ בחר לפחות ליקוי אחד</p>
-      )}
-
       {/* ═══ CLERK VIEW ═══ */}
-      {view === 'clerk' && selIds.length > 0 && (
-        <section className="rounded-lg overflow-hidden shadow-lg text-sm" style={{border:`1px solid ${B.cBrd}`,boxShadow:B.cShd}} aria-label="תצוגת מערכת פנימית">
-          {/* Dark system chrome */}
-          <div className="flex items-center justify-between px-3 py-1.5" style={{background:'#1a2332',color:'#7b8fa3',fontSize:'10px'}}>
-            <div className="flex items-center gap-2">
-              <span className="opacity-50">⚙</span><span>DocClaim v4.2</span>
-              <span className="opacity-30">|</span><span>מערכת תביעות</span>
-            </div>
-            <div className="flex gap-3 items-center">
-              <span>Power BI</span><span>SAP</span><span>BI מרכזי</span>
-              <span className="px-2 py-0.5 rounded text-[9px]" style={{background:'#2a3a4e'}}>שרה כ. | סניף ירושלים</span>
-            </div>
+      {view === 'clerk' && (
+        <section className="rounded-lg overflow-hidden shadow-lg text-sm" style={{ border: `1px solid ${C.g2}`, boxShadow: '0 2px 8px rgba(6,77,173,0.1)' }}>
+          {/* System chrome */}
+          <div className="flex items-center justify-between px-3 py-1.5" style={{ background: '#1a2332', color: '#7b8fa3', fontSize: '10px' }}>
+            <div className="flex items-center gap-2"><span className="opacity-50">⚙</span><span>DocClaim v4.2</span><span className="opacity-30">|</span><span>מערכת תביעות</span></div>
+            <span className="px-2 py-0.5 rounded text-[9px]" style={{ background: '#2a3a4e' }}>שרה כ. | סניף ירושלים</span>
           </div>
           {/* Navy header */}
-          <header style={{background:B.navy}} className="px-4 sm:px-6 py-3">
-            <div className="flex items-center justify-between flex-wrap gap-2">
-              <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shrink-0" style={{boxShadow:'0 2px 6px rgba(0,0,0,0.15)'}}>
-                  <span style={{color:B.navy}} className="text-[12px] font-extrabold">ב״ל</span>
-                </div>
-                <div className="text-white">
-                  <h2 className="font-bold text-sm sm:text-base">תביעה לגמלת {dom}</h2>
-                  <p className="text-white/50 text-[11px]">המוסד לביטוח לאומי • בקשה 2401-4287 • סניף ירושלים</p>
-                </div>
+          <header style={{ background: C.navy }} className="px-4 sm:px-6 py-3">
+            <div className="flex items-center gap-3">
+              <div className="w-11 h-11 rounded-full bg-white flex items-center justify-center shrink-0 shadow">
+                <span style={{ color: C.navy }} className="text-[12px] font-extrabold">ב״ל</span>
               </div>
-              <div className="flex gap-2 text-[11px]">
-                {['📎 קבצים','🖨️ הדפסה','💾 שמירה'].map(t=>(
-                  <span key={t} className="bg-white/15 px-2.5 py-1.5 rounded text-white/70 cursor-pointer hover:bg-white/25 transition">{t}</span>
-                ))}
+              <div className="text-white">
+                <h2 className="font-bold text-sm sm:text-base">תביעה לגמלת {dom}</h2>
+                <p className="text-white/50 text-[11px]">המוסד לביטוח לאומי • בקשה 2401-4287</p>
               </div>
             </div>
           </header>
 
-          {/* Steps wizard */}
-          <nav className="px-3 py-3 overflow-x-auto scrollbar-hide" style={{background:B.lBg,borderBottom:`2px solid ${B.blue}`}} aria-label="שלבי התביעה">
-            <ol className="flex items-center justify-center gap-1 sm:gap-2 min-w-max list-none p-0 m-0">
-              {STEPS.map((st,i)=>(
-                <li key={st.n} className="flex items-center gap-1">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-[11px] font-bold shrink-0 ${
-                    st.s==='done'?'text-white':st.s==='active'?'text-white ring-2 ring-offset-2 shadow-md':'border-2'}`}
-                    style={st.s==='done'?{background:B.blue}:st.s==='active'?{background:B.blue,ringColor:B.act}:{borderColor:B.g3,background:B.w,color:B.g5}}
-                    aria-current={st.s==='active'?'step':undefined}>
-                    {st.s==='done'?<Check className="h-3.5 w-3.5"/>:st.n}
-                  </div>
-                  <span className="text-[10px] whitespace-nowrap" style={{color:st.s?B.blue:B.g5,fontWeight:st.s==='active'?700:400}}>{st.label}</span>
-                  {i<STEPS.length-1&&<div className="w-6 sm:w-10 h-0.5" style={{background:i<2?B.blue:B.g3}}/>}
-                </li>
-              ))}
-            </ol>
-          </nav>
-
           {/* Main content */}
-          <div className="p-4 sm:p-6 space-y-5" style={{background:B.pBg}}>
-            <div className="pr-3" style={{borderRight:`4px solid ${B.blue}`}}>
-              <h3 className="font-bold text-base" style={{color:B.navy}}>שלב 3: מסמכים רפואיים</h3>
-              <p className="text-[11px]" style={{color:B.sec}}>
-                המערכת ממפה אוטומטית את המסמכים הנדרשים לפי {selGroups.length} ליקויים שנבחרו
-              </p>
-            </div>
-
-            {/* Multi-diagnosis field with pills */}
-            <div className="rounded-lg border p-4" style={{background:B.w,borderColor:B.cBrd,boxShadow:B.cShd}}>
-              <label className="text-[11px] font-semibold block mb-2" style={{color:B.sec}} id="diag-label">
-                ליקויים נבחרים ({selGroups.length}/{MAX_DIAG}) <span style={{color:B.er}}>*</span>
+          <div className="p-4 sm:p-6 space-y-5" style={{ background: C.pBg }}>
+            {/* Diagnosis selector */}
+            <div className="rounded-lg border p-4" style={{ background: C.w, borderColor: C.g2 }}>
+              <label className="text-[11px] font-semibold block mb-2" style={{ color: C.sec }}>
+                בחר ליקויים (עד {MAX_SEL}) <span style={{ color: C.er }}>*</span>
               </label>
-              <div className="flex items-center gap-2 flex-wrap p-2.5 rounded-lg border-2 min-h-[44px]" style={{borderColor:B.blue,background:B.lBg}} aria-labelledby="diag-label">
-                {selGroups.map((g, idx) => {
-                  const pill = PILL_COLORS[idx % PILL_COLORS.length];
-                  return (
-                    <span key={g.id} className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold"
-                      style={{background:pill.bg,color:pill.text}}>
-                      {g.name}
-                      <button onClick={()=>removeDiag(g.id)} className={`opacity-60 hover:opacity-100 mr-1 ${fRing}`} aria-label={`הסר ${g.name}`}>
-                        <X className="h-3 w-3"/>
-                      </button>
-                    </span>
-                  );
-                })}
-                {selGroups.length < MAX_DIAG && (
-                  <div className="flex items-center gap-1 text-[10px]" style={{color:B.g5}}>
-                    <Search className="h-3 w-3" aria-hidden="true"/> הוסף ליקוי...
-                  </div>
+
+              {/* Selected pills */}
+              <div className="flex items-center gap-2 flex-wrap min-h-[44px] p-2 rounded-lg border" style={{ borderColor: selIds.length ? C.blue : C.g3, background: selIds.length ? C.lBg : C.w }}>
+                {selGroups.map((g, idx) => (
+                  <span key={g.id} className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold text-white"
+                    style={{ background: PILL_BG[idx % PILL_BG.length] }}>
+                    {g.name}
+                    <button onClick={() => removeDiag(g.id)} className={`opacity-70 hover:opacity-100 ${FR}`} aria-label={`הסר ${g.name}`}>
+                      <X className="h-3 w-3" />
+                    </button>
+                  </span>
+                ))}
+                {selIds.length < MAX_SEL && (
+                  <button onClick={() => setSearchOpen(!searchOpen)} className={`flex items-center gap-1 text-[11px] px-2 py-1 rounded ${FR}`} style={{ color: C.sec }}>
+                    <Search className="h-3 w-3" /> {selIds.length === 0 ? 'בחר ליקוי...' : 'הוסף ליקוי...'}
+                  </button>
                 )}
               </div>
-              <p className="text-[10px] mt-1.5" style={{color:B.sec}}>
-                💡 זוהו {merged.length} מסמכים ייחודיים — {req.length} חובה, {recOpt.length} מומלץ/אופציונלי
-                {sharedCount > 0 && <span style={{color:B.blue}}> • {sharedCount} מסמכים משותפים לכמה ליקויים</span>}
-              </p>
+
+              {/* Search dropdown */}
+              {searchOpen && selIds.length < MAX_SEL && (
+                <div className="mt-2 rounded-lg border shadow-lg max-h-60 overflow-y-auto" style={{ borderColor: C.g2, background: C.w }}>
+                  <div className="sticky top-0 p-2" style={{ background: C.w, borderBottom: `1px solid ${C.g2}` }}>
+                    <input type="text" value={searchQ} onChange={e => setSearchQ(e.target.value)} placeholder="חפש ליקוי..."
+                      className={`w-full px-3 py-2 rounded border text-xs ${FR}`} style={{ borderColor: C.g3 }} autoFocus />
+                  </div>
+                  {searchResults.length === 0 && <div className="p-3 text-center text-xs" style={{ color: C.g5 }}>לא נמצאו תוצאות</div>}
+                  {searchResults.map(g => (
+                    <button key={g.id} onClick={() => addDiag(g.id)}
+                      className={`w-full text-right px-3 py-2.5 text-xs hover:bg-[#e8f3ff] transition flex items-center justify-between ${FR}`}
+                      style={{ color: C.navy, borderBottom: `1px solid ${C.g1}` }}>
+                      <span className="font-medium">{g.name}</span>
+                      <span className="text-[10px]" style={{ color: C.g5 }}>{g.documents.length} מסמכים</span>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Quick picks from MVP */}
+              {selIds.length === 0 && !searchOpen && (
+                <div className="mt-3">
+                  <p className="text-[10px] mb-1.5" style={{ color: C.g5 }}>ליקויים נפוצים:</p>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {available.map(g => (
+                      <button key={g.id} onClick={() => addDiag(g.id)}
+                        className={`px-3 py-1.5 rounded-full text-[11px] font-medium border transition hover:border-[#0368b0] ${FR}`}
+                        style={{ borderColor: C.g3, color: C.sec, background: C.w }}>
+                        {g.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Readiness score */}
-            <div className="rounded-lg p-4 flex flex-col sm:flex-row items-center justify-between gap-3" style={{background:sBg,border:`2px solid ${sCol}33`,boxShadow:B.cShd}} role="status" aria-label={`ציון מוכנות: ${score} מתוך 10`}>
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{background:`${sCol}12`,border:`3px solid ${sCol}`}}>
-                  <span className="text-2xl font-extrabold" style={{color:sCol}} aria-hidden="true">{score}</span>
+            {/* Results — only show when diagnoses selected */}
+            {selIds.length > 0 && (
+              <>
+                {/* Summary bar with circular progress */}
+                <div className="rounded-lg p-4 flex flex-col sm:flex-row items-center gap-4" style={{ background: C.lBg, border: `1px solid ${C.blue}30` }}>
+                  <div className="relative w-[72px] h-[72px] shrink-0">
+                    <CircleProgress pct={reqPct} />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-lg font-extrabold" style={{ color: reqPct >= 80 ? C.blue : reqPct >= 50 ? C.wn : C.er }}>{reqPct}%</span>
+                    </div>
+                  </div>
+                  <div className="flex-1 text-center sm:text-right">
+                    <div className="text-sm font-bold" style={{ color: C.navy }}>
+                      {reqPct === 100 ? '✓ כל מסמכי החובה הוגשו' : reqPct >= 80 ? 'כמעט שם — חסרים מעט מסמכים' : reqPct >= 50 ? 'ניתן לכנס ועדה — מומלץ להשלים' : 'חסרים מסמכי חובה'}
+                    </div>
+                    <div className="text-[11px] mt-0.5" style={{ color: C.sec }}>
+                      {reqDone}/{reqDocs.length} מסמכי חובה • {merged.length} מסמכים ייחודיים סה"כ
+                      {sharedCount > 0 && <span style={{ color: C.blue }}> • {sharedCount} משותפים</span>}
+                    </div>
+                    {reqPct === 100 && reqDocs.length > 0 && (
+                      <div className="text-[11px] font-bold mt-1 px-3 py-1 rounded-full inline-block text-white" style={{ background: C.blue }}>
+                        ⚡ מסלול מהיר — אישור תוך יום
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <div className="text-xs" style={{color:B.sec}}>ציון מוכנות תיק</div>
-                  <div className="text-sm font-bold" style={{color:sCol}}>{sLbl}</div>
-                  <div className="text-[10px] mt-0.5" style={{color:B.sec}}>{rDone}/{req.length} מסמכי חובה הוגשו</div>
-                </div>
-              </div>
-              <div className="flex gap-0.5" aria-hidden="true">{Array.from({length:10},(_,i)=>(
-                <div key={i} className="w-3.5 h-6 rounded-sm transition-all" style={{background:i<score?sCol:B.g2}}/>
-              ))}</div>
-              {score>=8&&<div className="text-white text-[11px] font-bold px-3 py-1.5 rounded-lg animate-pulse" style={{background:B.blue}}>⚡ מסלול מהיר — אישור תוך יום</div>}
-            </div>
 
-            {/* Two-column doc tables: right=חובה, left=מומלץ+אופציונלי */}
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="rounded-lg overflow-hidden" style={{border:`1px solid ${B.cBrd}`,boxShadow:B.cShd}}>
-                <div className="font-bold text-xs px-4 py-2.5 flex items-center justify-between text-white" style={{background:B.navy}}>
-                  <span>📋 מסמכי חובה ({rDone}/{req.length})</span>
-                  {rDone===req.length&&req.length>0&&<CheckCircle2 className="h-4 w-4" aria-hidden="true"/>}
+                {/* Two-column doc tables */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  {/* Right: חובה */}
+                  <div className="rounded-lg overflow-hidden border" style={{ borderColor: C.g2 }}>
+                    <div className="font-bold text-xs px-4 py-2.5 flex items-center justify-between text-white" style={{ background: C.navy }}>
+                      <span>📋 מסמכי חובה ({reqDone}/{reqDocs.length})</span>
+                    </div>
+                    <div className="bg-white divide-y" style={{ borderColor: C.g1 }}>
+                      {reqDocs.map((m, i) => (
+                        <DocRow key={m.doc.id} d={m.doc} i={i + 1} on={!!checked[m.doc.id]} toggle={() => toggle(m.doc.id)}
+                          accent={C.navy} from={m.from} multi={selGroups.length > 1} />
+                      ))}
+                      {reqDocs.length === 0 && <Empty />}
+                    </div>
+                  </div>
+                  {/* Left: מומלץ + אופציונלי */}
+                  <div className="rounded-lg overflow-hidden border" style={{ borderColor: C.g2 }}>
+                    <div className="font-bold text-xs px-4 py-2.5 flex items-center justify-between text-white" style={{ background: C.blue }}>
+                      <span>📎 מומלץ / אופציונלי ({recDocs.filter(m => checked[m.doc.id]).length}/{recDocs.length})</span>
+                    </div>
+                    <div className="bg-white divide-y" style={{ borderColor: C.g1 }}>
+                      {recDocs.map((m, i) => (
+                        <DocRow key={m.doc.id} d={m.doc} i={i + 1} on={!!checked[m.doc.id]} toggle={() => toggle(m.doc.id)}
+                          accent={C.blue} from={m.from} multi={selGroups.length > 1} />
+                      ))}
+                      {recDocs.length === 0 && <Empty />}
+                    </div>
+                  </div>
                 </div>
-                <div className="bg-white divide-y divide-gray-100" role="list" aria-label="מסמכי חובה">
-                  {req.map((m,i)=><DocRow key={m.doc.id} d={m.doc} i={i+1} on={!!docs[m.doc.id]} toggle={()=>toggle(m.doc.id)} accent={B.navy} fr={fRing} fromGroups={m.fromGroups} multiDiag={selGroups.length>1}/>)}
-                  {req.length===0&&<div className="p-4 text-center text-xs" style={{color:B.g5}}>אין מסמכי חובה</div>}
-                </div>
-              </div>
-              <div className="rounded-lg overflow-hidden" style={{border:`1px solid ${B.cBrd}`,boxShadow:B.cShd}}>
-                <div className="font-bold text-xs px-4 py-2.5 flex items-center justify-between text-white" style={{background:B.blue}}>
-                  <span>📎 מומלץ / אופציונלי ({recOpt.filter(m=>docs[m.doc.id]).length}/{recOpt.length})</span>
-                </div>
-                <div className="bg-white divide-y divide-gray-100" role="list" aria-label="מסמכי המלצה">
-                  {recOpt.map((m,i)=><DocRow key={m.doc.id} d={m.doc} i={i+1} on={!!docs[m.doc.id]} toggle={()=>toggle(m.doc.id)} accent={B.blue} fr={fRing} fromGroups={m.fromGroups} multiDiag={selGroups.length>1}/>)}
-                  {recOpt.length===0&&<div className="p-4 text-center text-xs" style={{color:B.g5}}>אין מסמכי המלצה</div>}
-                </div>
-              </div>
-            </div>
+              </>
+            )}
 
-            {/* Action buttons */}
-            <div className="flex items-center justify-between pt-3" style={{borderTop:`1px solid ${B.g2}`}}>
-              <button className={`text-[11px] min-h-[44px] px-2 ${fRing}`} style={{color:B.sec}}>← חזרה לשלב הקודם</button>
-              <div className="flex gap-2">
-                <button className={`px-4 py-2 rounded-lg text-[11px] font-semibold border min-h-[44px] ${fRing}`} style={{borderColor:B.g3,color:B.sec}}>שמור טיוטה</button>
-                <button className={`px-5 py-2 rounded-lg text-[11px] font-bold text-white min-h-[44px] transition ${fRing}`}
-                  style={{background:score>=5?B.blue:B.g3,cursor:score>=5?'pointer':'not-allowed'}}
-                  disabled={score<5} aria-label={score>=5?'המשך לשלב הבא':'יש להשלים מסמכי חובה'}>
-                  המשך לשלב הבא →
-                </button>
+            {selIds.length === 0 && (
+              <div className="text-center py-10">
+                <FileText className="h-12 w-12 mx-auto mb-3" style={{ color: C.g3 }} />
+                <p className="text-sm font-medium" style={{ color: C.g5 }}>בחר ליקוי אחד או יותר כדי לראות את המסמכים הנדרשים</p>
               </div>
-            </div>
+            )}
           </div>
         </section>
       )}
 
       {/* ═══ CITIZEN VIEW ═══ */}
-      {view === 'citizen' && selIds.length > 0 && (
-        <section className="rounded-lg overflow-hidden shadow-lg text-sm" style={{border:`1px solid ${B.cBrd}`,boxShadow:B.cShd}} aria-label="תצוגת אתר ציבורי">
+      {view === 'citizen' && (
+        <section className="rounded-lg overflow-hidden shadow-lg text-sm" style={{ border: `1px solid ${C.g2}` }}>
           {/* Gov.il bar */}
-          <div className="flex items-center justify-between px-4 py-1.5 text-white" style={{background:B.navy,fontSize:'10px'}}>
+          <div className="flex items-center justify-between px-4 py-1.5 text-white" style={{ background: C.navy, fontSize: '10px' }}>
             <div className="flex items-center gap-3"><span className="font-bold">gov.il</span><span className="opacity-30">|</span><span className="opacity-60">שירותי ממשלה</span></div>
             <div className="flex items-center gap-3 opacity-60"><span>נגישות</span><span>עברית</span></div>
           </div>
           {/* NII header */}
-          <header style={{background:B.navy}} className="px-4 sm:px-6 py-4">
+          <header style={{ background: C.navy }} className="px-4 sm:px-6 py-4">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shrink-0 shadow-lg">
-                <span style={{color:B.navy}} className="text-[13px] font-extrabold" aria-hidden="true">ב״ל</span>
+                <span style={{ color: C.navy }} className="text-[13px] font-extrabold">ב״ל</span>
               </div>
               <div className="text-white">
                 <h2 className="font-bold text-base sm:text-lg">המוסד לביטוח לאומי</h2>
@@ -342,87 +301,131 @@ export default function SystemMockupTab() {
               </div>
             </div>
           </header>
-          {/* Breadcrumb */}
-          <nav className="px-4 sm:px-6 py-2 text-[10px]" style={{background:B.g1,borderBottom:`1px solid ${B.g2}`,color:B.g5}} aria-label="ניווט">
-            דף הבית › {dom} › <span className="font-semibold" style={{color:B.blue}}>הכנה לוועדה רפואית</span>
+          <nav className="px-4 sm:px-6 py-2 text-[10px]" style={{ background: C.g1, borderBottom: `1px solid ${C.g2}`, color: C.g5 }}>
+            דף הבית › {dom} › <span className="font-semibold" style={{ color: C.blue }}>הכנה לוועדה רפואית</span>
           </nav>
 
           <div className="bg-white p-4 sm:p-6 space-y-5">
-            {/* Greeting card */}
-            <div className="rounded-lg p-4 border" style={{background:B.lBg,borderColor:`${B.blue}30`}}>
-              <div className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white" style={{background:B.blue}}>
-                  <User className="h-5 w-5" aria-hidden="true"/>
+            {/* Diagnosis selector — same logic */}
+            <div className="rounded-lg border p-4" style={{ background: C.lBg, borderColor: `${C.blue}30` }}>
+              <label className="text-xs font-bold block mb-2" style={{ color: C.navy }}>מה הבעיה הרפואית שלך?</label>
+              <div className="flex items-center gap-2 flex-wrap min-h-[44px] p-2 rounded-lg border bg-white" style={{ borderColor: selIds.length ? C.blue : C.g3 }}>
+                {selGroups.map((g, idx) => (
+                  <span key={g.id} className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[11px] font-semibold text-white"
+                    style={{ background: PILL_BG[idx % PILL_BG.length] }}>
+                    {g.name}
+                    <button onClick={() => removeDiag(g.id)} className={`opacity-70 hover:opacity-100 ${FR}`} aria-label={`הסר ${g.name}`}>
+                      <X className="h-3 w-3" />
+                    </button>
+                  </span>
+                ))}
+                {selIds.length < MAX_SEL && (
+                  <button onClick={() => setSearchOpen(!searchOpen)} className={`flex items-center gap-1 text-[11px] px-2 py-1 rounded ${FR}`} style={{ color: C.sec }}>
+                    <Search className="h-3 w-3" /> {selIds.length === 0 ? 'בחר ליקוי...' : 'הוסף ליקוי...'}
+                  </button>
+                )}
+              </div>
+              {searchOpen && selIds.length < MAX_SEL && (
+                <div className="mt-2 rounded-lg border shadow-lg max-h-60 overflow-y-auto bg-white" style={{ borderColor: C.g2 }}>
+                  <div className="sticky top-0 p-2 bg-white" style={{ borderBottom: `1px solid ${C.g2}` }}>
+                    <input type="text" value={searchQ} onChange={e => setSearchQ(e.target.value)} placeholder="חפש ליקוי..."
+                      className={`w-full px-3 py-2 rounded border text-xs ${FR}`} style={{ borderColor: C.g3 }} autoFocus />
+                  </div>
+                  {searchResults.length === 0 && <div className="p-3 text-center text-xs" style={{ color: C.g5 }}>לא נמצאו תוצאות</div>}
+                  {searchResults.map(g => (
+                    <button key={g.id} onClick={() => addDiag(g.id)}
+                      className={`w-full text-right px-3 py-2.5 text-xs hover:bg-[#e8f3ff] transition ${FR}`}
+                      style={{ color: C.navy, borderBottom: `1px solid ${C.g1}` }}>
+                      {g.name}
+                    </button>
+                  ))}
                 </div>
-                <div>
-                  <p className="font-bold text-sm" style={{color:B.navy}}>שלום, הנה הרשימה שלך</p>
-                  <p className="text-xs mt-1" style={{color:B.g7}}>
-                    בחרת: {selGroups.map((g, idx) => (
-                      <span key={g.id}>
-                        {idx > 0 && ', '}
-                        <b style={{color:PILL_COLORS[idx % PILL_COLORS.length].bg}}>{g.name}</b>
-                      </span>
-                    ))} ({dom})
+              )}
+              {selIds.length === 0 && !searchOpen && (
+                <div className="mt-3">
+                  <p className="text-[10px] mb-1.5" style={{ color: C.g5 }}>ליקויים נפוצים:</p>
+                  <div className="flex gap-1.5 flex-wrap">
+                    {available.map(g => (
+                      <button key={g.id} onClick={() => addDiag(g.id)}
+                        className={`px-3 py-1.5 rounded-full text-[11px] font-medium border transition hover:border-[#0368b0] bg-white ${FR}`}
+                        style={{ borderColor: C.g3, color: C.sec }}>
+                        {g.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {selIds.length > 0 && (
+              <>
+                {/* Circular progress */}
+                <div className="rounded-lg p-5 text-center" style={{ background: C.pBg, border: `1px solid ${C.g2}` }}>
+                  <div className="relative w-24 h-24 mx-auto">
+                    <CircleProgress pct={reqPct} size={96} stroke={8} />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span className="text-2xl font-extrabold" style={{ color: reqPct >= 80 ? C.blue : reqPct >= 50 ? C.wn : C.er }}>{reqPct}%</span>
+                    </div>
+                  </div>
+                  <p className="text-sm font-bold mt-2" style={{ color: C.navy }}>
+                    {reqPct === 100 ? '✓ מוכן לוועדה' : reqPct >= 50 ? 'בדרך הנכונה' : 'צריך להשלים מסמכים'}
                   </p>
-                  <p className="text-[11px] mt-1" style={{color:B.sec}}>ברגע שתגיש תביעה — אתה מוכר מתאריך ההגשה. המסמכים עוזרים לזרז.</p>
-                  {sharedCount > 0 && (
-                    <p className="text-[11px] mt-1 font-semibold" style={{color:B.blue}}>
-                      📌 {sharedCount} מסמכים משותפים לכמה ליקויים — מופיעים פעם אחת
-                    </p>
+                  <p className="text-[11px] mt-1" style={{ color: C.sec }}>{reqDone} מתוך {reqDocs.length} מסמכי חובה</p>
+                  {reqPct === 100 && reqDocs.length > 0 && (
+                    <p className="text-[11px] font-bold mt-2 px-3 py-1 rounded-full inline-block text-white" style={{ background: C.blue }}>⚡ ייתכן אישור מהיר תוך יום</p>
                   )}
                 </div>
-              </div>
-            </div>
 
-            {/* Score */}
-            <div className="rounded-lg p-5 text-center" style={{background:sBg,border:`2px solid ${sCol}33`,boxShadow:B.cShd}} role="status" aria-label={`ציון מוכנות: ${score} מתוך 10`}>
-              <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto" style={{background:`${sCol}12`,border:`4px solid ${sCol}`}}>
-                <span className="text-3xl font-extrabold" style={{color:sCol}} aria-hidden="true">{score}</span>
-              </div>
-              <p className="text-sm font-bold mt-2" style={{color:sCol}}>{sLbl}</p>
-              <div className="flex justify-center gap-0.5 mt-2" aria-hidden="true">{Array.from({length:10},(_,i)=>(
-                <div key={i} className="w-4 h-3 rounded-sm" style={{background:i<score?sCol:B.g2}}/>
-              ))}</div>
-              <p className="text-[11px] mt-2" style={{color:B.sec}}>
-                {score<5?'צריך להשלים מסמכים כדי שנוכל לקבוע ועדה':score>=8?'⚡ ייתכן אישור מהיר תוך יום!':'אפשר לקבוע ועדה — מסמכים נוספים יחזקו את התיק'}
-              </p>
-            </div>
+                {/* Required docs */}
+                <div>
+                  <h4 className="font-bold text-xs mb-2 flex items-center gap-1.5" style={{ color: C.er }}>
+                    <AlertCircle className="h-3.5 w-3.5" /> חובה להביא ({reqDone}/{reqDocs.length})
+                  </h4>
+                  <div className="space-y-2">
+                    {reqDocs.map(m => <CitizenCard key={m.doc.id} d={m.doc} on={!!checked[m.doc.id]} toggle={() => toggle(m.doc.id)} from={m.from} multi={selGroups.length > 1} />)}
+                  </div>
+                </div>
 
-            {/* Document lists */}
-            <div role="list" aria-label="מסמכי חובה">
-              <h4 className="font-bold text-xs mb-2 flex items-center gap-1.5" style={{color:B.er}}>
-                <AlertCircle className="h-3.5 w-3.5" aria-hidden="true"/> חובה להביא ({rDone}/{req.length})
-              </h4>
-              <div className="space-y-2">{req.map(m=><CitizenCard key={m.doc.id} d={m.doc} on={!!docs[m.doc.id]} toggle={()=>toggle(m.doc.id)} fr={fRing} fromGroups={m.fromGroups} multiDiag={selGroups.length>1}/>)}</div>
-            </div>
-            {recOpt.length>0&&<div role="list" aria-label="מסמכים מומלצים ואופציונליים">
-              <h4 className="font-bold text-xs mb-2 flex items-center gap-1.5" style={{color:B.wn}}>
-                <Info className="h-3.5 w-3.5" aria-hidden="true"/> מומלץ / אופציונלי ({recOpt.filter(m=>docs[m.doc.id]).length}/{recOpt.length})
-              </h4>
-              <div className="space-y-2">{recOpt.map(m=><CitizenCard key={m.doc.id} d={m.doc} on={!!docs[m.doc.id]} toggle={()=>toggle(m.doc.id)} fr={fRing} fromGroups={m.fromGroups} multiDiag={selGroups.length>1}/>)}</div>
-            </div>}
+                {recDocs.length > 0 && (
+                  <div>
+                    <h4 className="font-bold text-xs mb-2 flex items-center gap-1.5" style={{ color: C.wn }}>
+                      <Info className="h-3.5 w-3.5" /> מומלץ / אופציונלי ({recDocs.filter(m => checked[m.doc.id]).length}/{recDocs.length})
+                    </h4>
+                    <div className="space-y-2">
+                      {recDocs.map(m => <CitizenCard key={m.doc.id} d={m.doc} on={!!checked[m.doc.id]} toggle={() => toggle(m.doc.id)} from={m.from} multi={selGroups.length > 1} />)}
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
 
-            {/* Help section */}
-            <div className="rounded-lg p-4 border" style={{background:B.g1,borderColor:B.g2}}>
-              <div className="flex items-center gap-2 text-xs font-bold mb-2" style={{color:B.navy}}>
-                <Phone className="h-3.5 w-3.5" aria-hidden="true"/> צריך עזרה?
+            {selIds.length === 0 && (
+              <div className="text-center py-10">
+                <User className="h-12 w-12 mx-auto mb-3" style={{ color: C.g3 }} />
+                <p className="text-sm font-medium" style={{ color: C.g5 }}>בחר את הליקוי הרפואי שלך כדי לראות מה צריך להביא לוועדה</p>
               </div>
-              <div className="grid grid-cols-2 gap-2 text-[11px]" style={{color:B.sec}}>
+            )}
+
+            {/* Help */}
+            <div className="rounded-lg p-4 border" style={{ background: C.g1, borderColor: C.g2 }}>
+              <div className="flex items-center gap-2 text-xs font-bold mb-2" style={{ color: C.navy }}>
+                <Phone className="h-3.5 w-3.5" /> צריך עזרה?
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-[11px]" style={{ color: C.sec }}>
                 <div>📞 מוקד: *6050</div><div>💬 צ׳אט: btl.gov.il</div>
                 <div>🏢 סניף קרוב: btl.gov.il/snifim</div><div>📧 פנייה מקוונת באתר</div>
               </div>
             </div>
-            <footer className="text-center text-[10px] pt-3" style={{color:B.g5,borderTop:`1px solid ${B.g2}`}}>
+            <footer className="text-center text-[10px] pt-3" style={{ color: C.g5, borderTop: `1px solid ${C.g2}` }}>
               המוסד לביטוח לאומי • כל הזכויות שמורות © 2026
             </footer>
           </div>
         </section>
       )}
 
-      {/* Footer credit */}
       <footer className="text-center text-[11px] text-muted-foreground mt-2 space-y-0.5">
-        <p className="font-semibold" style={{color:B.sec}}>💡 הלוגיקה מוכנה ועובדת. נדרש: חיבור API לטבלת אבחנה-מסמך + הטמעה במסך DocClaim.</p>
-        <p style={{color:B.g5}}>אביעד יצחקי | מינהל גמלאות | מרץ 2026</p>
+        <p className="font-semibold" style={{ color: C.sec }}>💡 הלוגיקה מוכנה ועובדת. נדרש: חיבור API לטבלת אבחנה-מסמך + הטמעה במסך DocClaim.</p>
+        <p style={{ color: C.g5 }}>אביעד יצחקי | מינהל גמלאות | מרץ 2026</p>
       </footer>
     </div>
   );
@@ -430,52 +433,44 @@ export default function SystemMockupTab() {
 
 /* ═══ Sub-components ═══ */
 
-/* DocRow — clerk table row with shared-diagnosis indicator */
-function DocRow({d,i,on,toggle,accent,fr,fromGroups,multiDiag}:{d:DocumentItem;i:number;on:boolean;toggle:()=>void;accent:string;fr:string;fromGroups:string[];multiDiag:boolean}) {
+function Empty() {
+  return <div className="p-4 text-center text-xs" style={{ color: C.g5 }}>אין מסמכים</div>;
+}
+
+function DocRow({ d, i, on, toggle, accent, from, multi }: { d: DocumentItem; i: number; on: boolean; toggle: () => void; accent: string; from: string[]; multi: boolean }) {
   return (
-    <div className={`flex items-center gap-3 px-4 py-3 transition-colors ${on?'':'hover:bg-[#f5f9ff]'}`} role="listitem"
-      style={on?{background:'#e8f3ff'}:{}}>
-      <span className="font-bold w-5 text-center shrink-0 text-xs" style={{color:accent}} aria-hidden="true">{i}</span>
+    <div className={`flex items-center gap-3 px-4 py-3 transition-colors ${on ? '' : 'hover:bg-[#f5f9ff]'}`}
+      style={on ? { background: C.lBg } : {}}>
+      <span className="font-bold w-5 text-center shrink-0 text-xs" style={{ color: accent }}>{i}</span>
       <div className="flex-1 min-w-0">
-        <div className={`font-semibold text-xs ${on?'line-through':''}`} style={{color:on?'#9ca3af':'#0c3058'}}>{d.name}</div>
-        {d.description&&<div className="text-[10px] truncate" style={{color:'#266794'}}>{d.description}</div>}
-        {multiDiag && fromGroups.length > 1 && (
-          <div className="text-[9px] mt-0.5 flex items-center gap-1" style={{color:'#0368b0'}}>
-            🔗 משותף: {fromGroups.join(', ')}
-          </div>
-        )}
+        <div className={`font-semibold text-xs ${on ? 'line-through' : ''}`} style={{ color: on ? C.g3 : C.navy }}>{d.name}</div>
+        {d.description && <div className="text-[10px] truncate" style={{ color: C.sec }}>{d.description}</div>}
+        {multi && from.length > 1 && <div className="text-[9px] mt-0.5" style={{ color: C.blue }}>🔗 משותף: {from.join(', ')}</div>}
       </div>
-      <button onClick={toggle} aria-label={on?`${d.name} הועלה`:`העלה ${d.name}`}
-        className={`shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold min-h-[44px] transition-all flex items-center gap-1 ${fr} ${
-          on?'border':'bg-white border'}`}
-        style={on?{background:'#e8f3ff',color:'#0368b0',borderColor:'#0368b0'}:{borderColor:'#d1d5db',color:'#266794'}}>
-        {on?<><CheckCircle2 className="h-3 w-3" aria-hidden="true"/> הועלה</>:<><Upload className="h-3 w-3" aria-hidden="true"/> העלה</>}
+      <button onClick={toggle} aria-label={on ? `${d.name} הועלה` : `העלה ${d.name}`}
+        className={`shrink-0 px-3 py-1.5 rounded-lg text-[11px] font-bold min-h-[44px] transition flex items-center gap-1 border ${FR}`}
+        style={on ? { background: C.lBg, color: C.blue, borderColor: C.blue } : { borderColor: C.g3, color: C.sec, background: C.w }}>
+        {on ? <><Check className="h-3 w-3" /> הועלה</> : <><Upload className="h-3 w-3" /> העלה</>}
       </button>
     </div>
   );
 }
 
-/* CitizenCard — citizen doc card with shared-diagnosis indicator */
-function CitizenCard({d,on,toggle,fr,fromGroups,multiDiag}:{d:DocumentItem;on:boolean;toggle:()=>void;fr:string;fromGroups:string[];multiDiag:boolean}) {
+function CitizenCard({ d, on, toggle, from, multi }: { d: DocumentItem; on: boolean; toggle: () => void; from: string[]; multi: boolean }) {
   return (
-    <div className={`rounded-lg border p-3 flex items-start gap-3 transition-all ${on?'shadow-sm':'hover:shadow-sm'}`} role="listitem"
-      style={on?{background:'#e8f3ff',borderColor:'#0368b0'}:{background:'#fff',borderColor:'rgba(0,0,0,0.1)'}}>
-      <button onClick={toggle} aria-label={on?`${d.name} סומן`:`סמן ${d.name}`}
-        className={`mt-0.5 w-8 h-8 rounded-full border-2 flex items-center justify-center shrink-0 transition-all ${fr} ${
-          on?'text-white scale-110':''}`}
-        style={on?{background:'#0368b0',borderColor:'#0368b0'}:{borderColor:'#d1d5db'}}>
-        {on&&<Check className="h-3.5 w-3.5" aria-hidden="true"/>}
+    <div className={`rounded-lg border p-3 flex items-start gap-3 transition-all ${on ? 'shadow-sm' : 'hover:shadow-sm'}`}
+      style={on ? { background: C.lBg, borderColor: C.blue } : { background: C.w, borderColor: C.g2 }}>
+      <button onClick={toggle} aria-label={on ? `${d.name} סומן` : `סמן ${d.name}`}
+        className={`mt-0.5 w-8 h-8 rounded-full border-2 flex items-center justify-center shrink-0 transition ${FR} ${on ? 'text-white' : ''}`}
+        style={on ? { background: C.blue, borderColor: C.blue } : { borderColor: C.g3 }}>
+        {on && <Check className="h-3.5 w-3.5" />}
       </button>
       <div className="flex-1 min-w-0">
-        <div className={`font-semibold text-xs ${on?'line-through':''}`} style={{color:on?'#9ca3af':'#0c3058'}}>{d.name}</div>
-        {d.description&&<div className="text-[10px] mt-0.5" style={{color:'#266794'}}>{d.description}</div>}
-        {multiDiag && fromGroups.length > 1 && (
-          <div className="text-[9px] mt-0.5 font-medium" style={{color:'#0368b0'}}>
-            🔗 רלוונטי ל: {fromGroups.join(', ')}
-          </div>
-        )}
-        {d.whereToGet&&<div className="text-[10px] mt-1 font-medium" style={{color:'#0368b0'}}>📍 {d.whereToGet}</div>}
-        {d.tip&&<div className="text-[10px] mt-0.5 rounded px-1.5 py-0.5 inline-block" style={{color:'#0c3058',background:'#fff7ed'}}>💡 {d.tip}</div>}
+        <div className={`font-semibold text-xs ${on ? 'line-through' : ''}`} style={{ color: on ? C.g3 : C.navy }}>{d.name}</div>
+        {d.description && <div className="text-[10px] mt-0.5" style={{ color: C.sec }}>{d.description}</div>}
+        {multi && from.length > 1 && <div className="text-[9px] mt-0.5 font-medium" style={{ color: C.blue }}>🔗 רלוונטי ל: {from.join(', ')}</div>}
+        {d.whereToGet && <div className="text-[10px] mt-1 font-medium" style={{ color: C.blue }}>📍 {d.whereToGet}</div>}
+        {d.tip && <div className="text-[10px] mt-0.5 rounded px-1.5 py-0.5 inline-block" style={{ color: C.navy, background: '#fff7ed' }}>💡 {d.tip}</div>}
       </div>
     </div>
   );
