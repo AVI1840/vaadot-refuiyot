@@ -25,14 +25,14 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: lovable-ui/package-lock.json
+          cache-dependency-path: ui/package-lock.json
       - run: npm install
-        working-directory: lovable-ui
+        working-directory: ui
       - run: npm run build
-        working-directory: lovable-ui
+        working-directory: ui
       - uses: actions/configure-pages@v4
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: lovable-ui/dist
+          path: ui/dist
       - id: deployment
         uses: actions/deploy-pages@v4

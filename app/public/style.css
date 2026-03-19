@@ -42,6 +42,8 @@ header {
 }
 .header-content { max-width: 1200px; margin: 0 auto; }
 .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: .6rem; }
+.header-brand { display: flex; align-items: center; gap: .8rem; }
+.header-logo { height: 36px; width: auto; filter: brightness(0) invert(1); }
 header h1 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.3px; }
 header .subtitle { font-size: .8rem; opacity: .7; margin-top: .15rem; }
 
