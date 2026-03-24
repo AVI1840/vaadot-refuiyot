@@ -21,3 +21,13 @@
 
 ## שלב הבא
 פיילוט עם אגף נכות כללית.
+
+
+---
+
+## 📄 ONE PAGER
+
+- [ONE PAGER (HTML)](https://avi1840.github.io/btl-projects-2026/html/vaadot-refuiyot.html)
+- [ONE PAGER (Word)](../one-pagers/word/05-vaadot-refuiyot.docx)
+- [פורטל כל הפרויקטים](https://avi1840.github.io/btl-projects-2026/)
+
