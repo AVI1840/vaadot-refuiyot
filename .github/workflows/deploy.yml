@@ -20,20 +20,21 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: btl-guide-light-main
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
-        run: npm ci || npm install
+        working-directory: btl-guide-light-main
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Build
+        working-directory: btl-guide-light-main
         run: npm run build
 
       - name: Setup Pages
