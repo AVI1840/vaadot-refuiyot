@@ -8,6 +8,7 @@ interface AppHeaderProps {
 }
 
 const tabs = [
+  { id: 'agent', label: '🤖 נועם — סוכן AI', ariaLabel: 'סוכן AI חכם לליווי בוועדות' },
   { id: 'checklist', label: '📋 הכנת צ\'קליסט', ariaLabel: 'הכנת צ\'קליסט מסמכים' },
   { id: 'dashboard', label: '📊 דשבורד ניהולי', ariaLabel: 'דשבורד סטטיסטי' },
   { id: 'tracking', label: '📈 מעקב תיקים', ariaLabel: 'מעקב תיקים' },
@@ -31,10 +32,10 @@ export default function AppHeader({ activeTab, onTabChange }: AppHeaderProps) {
             </div>
             <div>
               <h1 className="text-xl md:text-2xl font-extrabold leading-tight">
-                ועדות רפואיות — צ׳קליסט מסמכים חכם
+                תביעה ביום — סוכן AI לוועדות רפואיות
               </h1>
               <p className="text-primary-foreground/70 text-sm">
-                הכנה מושלמת לוועדה רפואית — דע מה להביא
+                ליווי חכם מהזימון ועד הוועדה | ביטוח לאומי
               </p>
             </div>
           </div>
