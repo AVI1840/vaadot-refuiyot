@@ -136,9 +136,9 @@ export default function AgentTab() {
         [
           { id: '1', label: '📋 מה להביא לוועדה?', action: 'מה אני צריך להביא לוועדה?' },
           { id: '2', label: '📝 עזרה במילוי טופס', action: 'אני צריך עזרה במילוי טופס התביעה' },
-          { id: '3', label: '⚖️ הזכויות שלי', action: 'מה הזכויות שלי בוועדה?' },
-          { id: '4', label: '📊 הערכת מוכנות', action: 'מה הסיכויים שלי?' },
-          { id: '5', label: '🏥 סוגי ועדות', action: 'מה ההבדל בין סוגי הוועדות?' },
+          { id: '3', label: '🔍 איפה משיגים מסמכים?', action: '__find_docs__' },
+          { id: '4', label: '⚖️ הזכויות שלי', action: 'מה הזכויות שלי בוועדה?' },
+          { id: '5', label: '📊 הערכת מוכנות', action: 'מה הסיכויים שלי?' },
           { id: '6', label: '❓ שאלות נפוצות', action: 'שאלות נפוצות' },
         ]
       );
@@ -246,8 +246,14 @@ export default function AgentTab() {
         setPhase('form');
         setFormStep(0);
         setFormData({});
-        pushAgent(`📝 **מעולה! נמלא את טופס התביעה יחד.**\n\nאנחה אותך שלב אחר שלב. בסוף תקבל טופס מוכן להדפסה.\n\n**שלב 1/9:** מה השם המלא שלך?`);
+        pushAgent(`📝 **מעולה! נמלא את טופס BL/283 — תביעה לקביעת דרגת נכות.**\n\nזה הטופס הרשמי של ביטוח לאומי. אנחה אותך שלב אחר שלב — בסוף תקבל טופס מוכן להדפסה.\n\n**שלב 1/12:** מה השם המלא שלך? (שם פרטי + שם משפחה)`);
       });
+      return;
+    }
+
+    // Document finding
+    if (lower.includes('איפה') || lower.includes('להשיג') || lower.includes('מציאת') || lower.includes('תור') || lower.includes('קופת חולים')) {
+      handleAction('__find_docs__');
       return;
     }
 
@@ -310,6 +316,7 @@ export default function AgentTab() {
 
         pushAgent(resp, [
           { id: 'interactive', label: '✅ צ\'קליסט אינטראקטיבי', action: '__checklist__' },
+          { id: 'find-docs', label: '🔍 איך משיגים את המסמכים?', action: '__find_docs__' },
           { id: 'form', label: '📝 מילוי טופס', action: 'עזרה בטופס' },
           { id: 'assess', label: '📊 הערכת מוכנות', action: 'הערכת מוכנות' },
         ], {
@@ -355,15 +362,18 @@ export default function AgentTab() {
   // ─── Form Steps ──────────────────────────────────────────────────────────
 
   const FORM_STEPS = [
-    { field: 'fullName', label: 'שם מלא', next: '**שלב 2/9:** מספר תעודת זהות?' },
-    { field: 'idNumber', label: 'ת.ז.', next: '**שלב 3/9:** תאריך לידה? (DD/MM/YYYY)' },
-    { field: 'birthDate', label: 'תאריך לידה', next: '**שלב 4/9:** כתובת מגורים?' },
-    { field: 'address', label: 'כתובת', next: '**שלב 5/9:** מספר טלפון?' },
-    { field: 'phone', label: 'טלפון', next: '**שלב 6/9:** מה האבחנה הרפואית העיקרית?' },
-    { field: 'diagnosis', label: 'אבחנה', next: '**שלב 7/9:** תאר את התלונות העיקריות ואיך הן משפיעות על היום-יום:' },
-    { field: 'mainComplaints', label: 'תלונות', next: '**שלב 8/9:** אילו תרופות אתה לוקח? (שם + מינון)' },
-    { field: 'medications', label: 'תרופות', next: '**שלב 9/9:** מצב תעסוקה? (עובד / לא עובד / חלקית)' },
-    { field: 'employmentStatus', label: 'תעסוקה', next: '' },
+    { field: 'fullName', label: 'שם מלא', next: '**שלב 2/12:** מספר תעודת זהות? (9 ספרות)', helpText: '' },
+    { field: 'idNumber', label: 'ת.ז.', next: '**שלב 3/12:** תאריך לידה?', helpText: '' },
+    { field: 'birthDate', label: 'תאריך לידה', next: '**שלב 4/12:** מצב משפחתי? (רווק/נשוי/גרוש/אלמן)', helpText: '' },
+    { field: 'maritalStatus', label: 'מצב משפחתי', next: '**שלב 5/12:** כתובת מגורים? (רחוב, מספר, עיר)', helpText: '' },
+    { field: 'address', label: 'כתובת', next: '**שלב 6/12:** טלפון נייד?', helpText: '' },
+    { field: 'phone', label: 'טלפון', next: '**שלב 7/12:** לאיזה סוג ועדה אתה מגיש?\n\n• נכות כללית\n• נכות מעבודה\n• ועדת ערר\n• ילד נכה\n• פטור ממס', helpText: '' },
+    { field: 'committeeType', label: 'סוג ועדה', next: '**שלב 8/12:** מה האבחנה הרפואית העיקרית?\n\n💡 _תאר בשפה חופשית — אני אזהה_', helpText: '' },
+    { field: 'diagnosis', label: 'אבחנה', next: '**שלב 9/12:** תאר את התלונות העיקריות — מה כואב, מה מפריע, מה השתנה?\n\n💡 _טיפ: הוועדה מתייחסת מאוד למגבלות תפקודיות. תאר בכנות._', helpText: '' },
+    { field: 'mainComplaints', label: 'תלונות עיקריות', next: '**שלב 10/12:** איך המצב משפיע על היום-יום? (הליכה, עבודה, שינה, פעילויות...)\n\n💡 _חשוב: זה מה שקובע אחוזי נכות — לא רק האבחנה_', helpText: '' },
+    { field: 'dailyLimitations', label: 'מגבלות תפקודיות', next: '**שלב 11/12:** אילו תרופות אתה לוקח? (שם + מינון + תדירות)\n\n💡 _אפשר לצלם את שקית התרופות ולהביא לוועדה_', helpText: '' },
+    { field: 'medications', label: 'תרופות', next: '**שלב 12/12:** מצב תעסוקה? (עובד / לא עובד / חלקית / פנסיונר)', helpText: '' },
+    { field: 'employmentStatus', label: 'תעסוקה', next: '', helpText: '' },
   ];
 
   const handleFormStep = (text: string) => {
@@ -375,20 +385,31 @@ export default function AgentTab() {
     setFormStep(nextStep);
 
     if (nextStep >= FORM_STEPS.length) {
-      // Complete
+      // Complete — generate real form summary
       typeAndRespond(() => {
-        let summary = `🎉 **הטופס מוכן!**\n\n`;
+        let summary = `🎉 **טופס BL/283 — תביעה לקביעת דרגת נכות**\n\n`;
+        summary += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        summary += `**א. פרטים אישיים**\n`;
         summary += `👤 ${updated.fullName} | ת.ז. ${updated.idNumber}\n`;
-        summary += `📅 ${updated.birthDate} | 📍 ${updated.address}\n`;
-        summary += `📱 ${updated.phone}\n`;
-        summary += `🏥 ${updated.diagnosis}\n`;
-        summary += `💊 ${updated.medications}\n`;
-        summary += `💼 ${updated.employmentStatus}\n\n`;
-        summary += `📋 **תלונות:** ${updated.mainComplaints}\n\n`;
-        summary += `---\n✅ ניתן להעתיק, להדפיס ולהגיש!`;
+        summary += `📅 ${updated.birthDate} | ${updated.maritalStatus}\n`;
+        summary += `📍 ${updated.address} | 📱 ${updated.phone}\n\n`;
+        summary += `**ב. פרטי התביעה**\n`;
+        summary += `🏥 סוג ועדה: ${updated.committeeType}\n`;
+        summary += `🩺 אבחנה: ${updated.diagnosis}\n\n`;
+        summary += `**ג. מצב רפואי ותפקודי**\n`;
+        summary += `📋 תלונות: ${updated.mainComplaints}\n`;
+        summary += `🚶 מגבלות: ${updated.dailyLimitations}\n`;
+        summary += `💊 תרופות: ${updated.medications}\n\n`;
+        summary += `**ד. תעסוקה**\n`;
+        summary += `💼 ${updated.employmentStatus}\n`;
+        summary += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+        summary += `✅ **הטופס מוכן להדפסה ולהגשה!**\n`;
+        summary += `📌 _זכור: הגש בסניף בטל"א או באתר www.btl.gov.il_`;
+
         pushAgent(summary, [
           { id: 'copy', label: '📋 העתק טופס', action: '__copy_form__' },
-          { id: 'checklist', label: '📋 המשך לצ\'קליסט', action: `מה להביא עבור ${updated.diagnosis}` },
+          { id: 'find-docs', label: '🔍 עזרה במציאת מסמכים', action: '__find_docs__' },
+          { id: 'checklist', label: '📋 צ\'קליסט מסמכים', action: `מה להביא עבור ${updated.diagnosis}` },
           { id: 'assess', label: '📊 הערכת מוכנות', action: 'הערכת מוכנות' },
         ], { formData: updated });
         setPhase('idle');
@@ -454,9 +475,85 @@ export default function AgentTab() {
       return;
     }
     if (action === '__copy_form__') {
-      const text = Object.entries(formData).map(([k, v]) => `${k}: ${v}`).join('\n');
-      navigator.clipboard.writeText(text);
-      toast.success('הטופס הועתק ללוח');
+      const lines = [
+        '═══════════════════════════════════════',
+        'טופס BL/283 — תביעה לקביעת דרגת נכות',
+        'המוסד לביטוח לאומי',
+        '═══════════════════════════════════════',
+        '',
+        'א. פרטים אישיים',
+        `שם מלא: ${formData.fullName || ''}`,
+        `ת.ז.: ${formData.idNumber || ''}`,
+        `תאריך לידה: ${formData.birthDate || ''}`,
+        `מצב משפחתי: ${(formData as any).maritalStatus || ''}`,
+        `כתובת: ${(formData as any).address || ''}`,
+        `טלפון: ${formData.phone || ''}`,
+        '',
+        'ב. פרטי התביעה',
+        `סוג ועדה: ${(formData as any).committeeType || ''}`,
+        `אבחנה עיקרית: ${formData.diagnosis || ''}`,
+        '',
+        'ג. מצב רפואי ותפקודי',
+        `תלונות עיקריות: ${formData.mainComplaints || ''}`,
+        `מגבלות תפקודיות: ${(formData as any).dailyLimitations || ''}`,
+        `תרופות: ${formData.medications || ''}`,
+        '',
+        'ד. תעסוקה',
+        `מצב תעסוקה: ${formData.employmentStatus || ''}`,
+        '',
+        '═══════════════════════════════════════',
+        'תאריך: ' + new Date().toLocaleDateString('he-IL'),
+        'חתימה: _______________',
+      ];
+      navigator.clipboard.writeText(lines.join('\n'));
+      toast.success('הטופס הועתק ללוח — הדבק ב-Word והדפס');
+      return;
+    }
+    if (action === '__find_docs__') {
+      pushUser('עזרה במציאת מסמכים');
+      typeAndRespond(() => {
+        let resp = `🔍 **סיוע במציאת מסמכים — יד חכמה מכוונת**\n\n`;
+        resp += `בהתבסס על האבחנה שלך, הנה בדיוק מה לעשות:\n\n`;
+        resp += `**📍 שלב 1 — רופא משפחה (התחל כאן!)**\n`;
+        resp += `• קבע תור לרופא משפחה\n`;
+        resp += `• בקש: מכתב מלווה + רשימת תרופות + הפניות למומחים\n`;
+        resp += `• _טיפ: ציין שזה לוועדה רפואית_\n\n`;
+        resp += `**🏥 שלב 2 — רופא מומחה**\n`;
+        resp += `• קבע תור למומחה הרלוונטי (דרך הפניה מרופא משפחה)\n`;
+        resp += `• בקש סיכום מפורט הכולל: אבחנות, ממצאים, מגבלות\n\n`;
+        resp += `**🔬 שלב 3 — בדיקות**\n`;
+        resp += `• בדיקות דם — הפניה מרופא משפחה → מעבדת הקופה\n`;
+        resp += `• הדמיה (MRI/CT) — הפניה ממומחה → מכון הדמיה\n\n`;
+        resp += `**💻 קישורים מהירים לקופות:**\n`;
+        resp += `• כללית: clalit.co.il/online | *2700\n`;
+        resp += `• מכבי: online.maccabi4u.co.il | *3555\n`;
+        resp += `• מאוחדת: meuhedet.co.il | *3833\n`;
+        resp += `• לאומית: leumit.co.il | *507\n\n`;
+        resp += `**⏱️ זמן הכנה מומלץ:** 3-4 שבועות לפני הוועדה\n\n`;
+        resp += `רוצה שאפרט יותר על מסמך ספציפי?`;
+
+        pushAgent(resp, [
+          { id: 'clalit', label: '🏥 כללית — קביעת תור', action: '__open_clalit__' },
+          { id: 'maccabi', label: '🏥 מכבי — קביעת תור', action: '__open_maccabi__' },
+          { id: 'btl', label: '📋 אתר בטל"א — טפסים', action: '__open_btl__' },
+          { id: 'checklist', label: '✅ חזור לצ\'קליסט', action: '__checklist__' },
+        ]);
+      }, 1000);
+      return;
+    }
+    if (action === '__open_clalit__') {
+      window.open('https://www.clalit.co.il/he/online', '_blank');
+      toast.success('נפתח אתר כללית אונליין');
+      return;
+    }
+    if (action === '__open_maccabi__') {
+      window.open('https://online.maccabi4u.co.il', '_blank');
+      toast.success('נפתח אתר מכבי אונליין');
+      return;
+    }
+    if (action === '__open_btl__') {
+      window.open('https://www.btl.gov.il', '_blank');
+      toast.success('נפתח אתר ביטוח לאומי');
       return;
     }
     handleSend(action);
