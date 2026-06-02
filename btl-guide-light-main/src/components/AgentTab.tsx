@@ -110,6 +110,44 @@ export default function AgentTab() {
 
   const AGENT = 'נועם';
 
+  // Dynamic quick replies per journey step
+  const QUICK_REPLIES: Record<JourneyStep, QuickAction[]> = {
+    welcome: [],
+    identify: [
+      { id: '1', label: 'סוכרת', action: 'סוכרת' },
+      { id: '2', label: 'כאבי גב', action: 'כאבי גב' },
+      { id: '3', label: 'דיכאון / חרדה', action: 'דיכאון' },
+      { id: '4', label: 'בעיות לב', action: 'מחלת לב' },
+      { id: '5', label: 'ילד נכה', action: 'אוטיזם' },
+      { id: '6', label: 'נפגע איבה', action: 'נפגע פעולות איבה' },
+    ],
+    checklist: [
+      { id: '1', label: '🔍 איך משיגים?', action: '__find_docs__' },
+      { id: '2', label: '📤 אעלה מסמכים', action: '__upload__' },
+      { id: '3', label: '📝 מילוי טופס', action: '__start_form__' },
+    ],
+    'find-docs': [
+      { id: '1', label: 'הבנתי, אצא להשיג', action: '__back_checklist__' },
+      { id: '2', label: 'שאלה על מסמך', action: 'איך משיגים סיכום רופא?' },
+      { id: '3', label: 'מוכן להמשיך', action: '__upload__' },
+    ],
+    upload: [
+      { id: '1', label: '🧪 הדמה: בדיקת דם', action: '__sim_upload_blood__' },
+      { id: '2', label: '🔬 הדמה: MRI', action: '__sim_upload_mri__' },
+      { id: '3', label: '📝 המשך לטופס', action: '__start_form__' },
+    ],
+    'fill-form': [],
+    assess: [
+      { id: '1', label: '🔍 שיפור ציון', action: '__find_docs__' },
+      { id: '2', label: '🎯 הכנה לוועדה', action: '__prepare__' },
+    ],
+    prepare: [
+      { id: '1', label: '⚖️ זכויות', action: '__rights__' },
+      { id: '2', label: '📊 בדיקה אחרונה', action: '__assess__' },
+      { id: '3', label: 'תודה, הכל ברור!', action: '__done__' },
+    ],
+  };
+
   // ─── Init ──────────────────────────────────────────────────────────────
 
   useEffect(() => {
@@ -479,6 +517,16 @@ export default function AgentTab() {
 
     if (action === '__open_clalit__') { window.open('https://www.clalit.co.il/he/online', '_blank'); toast.success('נפתח כללית אונליין'); return; }
     if (action === '__open_maccabi__') { window.open('https://online.maccabi4u.co.il', '_blank'); toast.success('נפתח מכבי אונליין'); return; }
+    if (action === '__done__') {
+      push('user', 'תודה, הכל ברור!');
+      respond(() => {
+        push('agent', `🌟 **בהצלחה בוועדה!**\n\nאני כאן תמיד אם תצטרך עוד עזרה.\n\nזכור:\n• הגע 15 דק' לפני\n• קח מלווה + ת.ז. + מסמכים\n• דבר על יום-יום\n\n💪 אתה מוכן!`, [
+          { id: 'restart', label: '↺ תביעה חדשה', action: '__restart__' },
+        ]);
+      }, 800);
+      return;
+    }
+    if (action === '__restart__') { handleReset(); return; }
 
     // Default: send as message
     handleSend(action);
@@ -756,9 +804,20 @@ export default function AgentTab() {
         </div>
 
         <form onSubmit={handleSubmit} className="border-t bg-card p-4">
+          {/* Dynamic Quick Replies */}
+          {!typing && QUICK_REPLIES[journeyStep]?.length > 0 && journeyStep !== 'fill-form' && (
+            <div className="flex gap-2 overflow-x-auto pb-3 mb-2 -mx-1 px-1">
+              {QUICK_REPLIES[journeyStep].map(qr => (
+                <button key={qr.id} onClick={() => qr.action.startsWith('__') ? handleAction(qr.action) : handleSend(qr.action)}
+                  className="shrink-0 px-3 py-2 text-xs font-medium rounded-full border border-secondary/20 bg-secondary/5 text-secondary hover:bg-secondary/10 transition-colors whitespace-nowrap">
+                  {qr.label}
+                </button>
+              ))}
+            </div>
+          )}
           <div className="flex gap-2">
             <Input ref={inputRef} value={input} onChange={e => setInput(e.target.value)}
-              placeholder={journeyStep === 'fill-form' ? 'הקלד תשובה...' : journeyStep === 'identify' ? 'תאר את הלקות שלך...' : 'שאל אותי משהו...'}
+              placeholder={journeyStep === 'fill-form' ? 'הקלד תשובה...' : journeyStep === 'identify' ? 'תאר את הבעיה הרפואית...' : 'שאל או כתוב משהו...'}
               className="flex-1 min-h-[48px] text-right text-base" dir="rtl" />
             <Button type="submit" disabled={!input.trim() || typing} className="min-h-[48px] min-w-[48px] bg-secondary hover:bg-secondary/90 text-white">
               <Send className="h-5 w-5" />
