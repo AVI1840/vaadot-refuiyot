@@ -2,101 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESIGN SYSTEM — "תביעה ביום"
+   Premium SaaS visual language. Not government portal.
+   Reference: Stripe · Linear · Notion · Ramp
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 @layer base {
   :root {
-    --background: 214 60% 97%;
-    --foreground: 213 73% 20%;
+    --background: 220 20% 97%;
+    --foreground: 220 40% 13%;
 
     --card: 0 0% 100%;
-    --card-foreground: 213 73% 20%;
+    --card-foreground: 220 40% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 213 73% 20%;
+    --popover-foreground: 220 40% 13%;
 
-    --primary: 213 73% 20%;
+    --primary: 215 70% 23%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 207 95% 35%;
+    --secondary: 210 90% 40%;
     --secondary-foreground: 0 0% 100%;
 
     --tertiary: 205 57% 36%;
     --tertiary-foreground: 0 0% 100%;
 
-    --accent: 37 78% 52%;
-    --accent-foreground: 213 73% 20%;
+    --accent: 38 85% 52%;
+    --accent-foreground: 220 40% 13%;
 
-    --muted: 213 15% 49%;
-    --muted-foreground: 213 15% 49%;
+    --muted: 220 10% 55%;
+    --muted-foreground: 220 10% 55%;
 
-    --destructive: 4 63% 46%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 153 63% 29%;
+    --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
 
-    --warning: 33 100% 40%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 220 40% 13%;
 
-    --info: 211 100% 95%;
-    --info-foreground: 207 95% 35%;
+    --info: 210 100% 96%;
+    --info-foreground: 210 90% 40%;
 
-    --border: 214 73% 35% / 0.1;
-    --input: 207 95% 35% / 0.3;
-    --ring: 214 100% 48%;
+    --border: 220 15% 90%;
+    --input: 220 15% 85%;
+    --ring: 210 90% 50%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 215 70% 23%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 0% 100%;
+    --sidebar-primary-foreground: 215 70% 23%;
+    --sidebar-accent: 210 90% 40%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 215 50% 30%;
+    --sidebar-ring: 210 90% 50%;
   }
 
-  .dark,
   .high-contrast {
-    --background: 220 20% 10%;
+    --background: 220 20% 8%;
     --foreground: 0 0% 100%;
-
-    --card: 220 20% 14%;
+    --card: 220 20% 12%;
     --card-foreground: 0 0% 100%;
-
-    --popover: 220 20% 14%;
-    --popover-foreground: 0 0% 100%;
-
-    --primary: 37 78% 52%;
-    --primary-foreground: 220 20% 10%;
-
-    --secondary: 207 95% 55%;
-    --secondary-foreground: 0 0% 100%;
-
-    --tertiary: 205 57% 56%;
-    --tertiary-foreground: 0 0% 100%;
-
-    --accent: 37 78% 52%;
-    --accent-foreground: 220 20% 10%;
-
-    --muted: 220 10% 30%;
-    --muted-foreground: 0 0% 80%;
-
-    --destructive: 4 63% 55%;
-    --destructive-foreground: 0 0% 100%;
-
-    --success: 153 63% 45%;
-    --success-foreground: 0 0% 100%;
-
-    --warning: 33 100% 55%;
-    --warning-foreground: 220 20% 10%;
-
-    --info: 211 50% 20%;
-    --info-foreground: 207 95% 75%;
-
+    --primary: 38 85% 52%;
+    --primary-foreground: 220 20% 8%;
     --border: 0 0% 100% / 0.15;
-    --input: 0 0% 100% / 0.2;
-    --ring: 37 78% 52%;
   }
 }
 
@@ -106,97 +79,49 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Heebo', sans-serif;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Heebo', -apple-system, BlinkMacSystemFont, sans-serif;
     direction: rtl;
+    font-size: 15px;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1 {
-    font-size: 28px;
-    font-weight: 800;
+  h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
+  h2 { font-size: 1.75rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+  h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; letter-spacing: -0.01em; }
+}
+
+/* ─── Typography Scale ────────────────────────────────────────────────────── */
+.font-size-normal { font-size: 15px; }
+.font-size-large { font-size: 18px; }
+.font-size-xlarge { font-size: 22px; }
+.font-size-large h1 { font-size: 2.8rem; }
+.font-size-large h2 { font-size: 2rem; }
+.font-size-xlarge h1 { font-size: 3.2rem; }
+.font-size-xlarge h2 { font-size: 2.4rem; }
+
+/* ─── Premium Card Treatment ─────────────────────────────────────────────── */
+@layer utilities {
+  .card-premium {
+    @apply bg-card rounded-2xl border shadow-sm;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
-
-  h2 {
-    font-size: 22px;
-    font-weight: 700;
+  .card-premium:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.04);
+    transform: translateY(-1px);
   }
-
-  h3 {
-    font-size: 18px;
-    font-weight: 700;
-  }
-}
-
-/* Font size classes */
-.font-size-normal {
-  font-size: 14px;
-}
-
-.font-size-large {
-  font-size: 18px;
-}
-
-.font-size-xlarge {
-  font-size: 22px;
-}
-
-.font-size-large h1 { font-size: 32px; }
-.font-size-large h2 { font-size: 26px; }
-.font-size-large h3 { font-size: 22px; }
-
-.font-size-xlarge h1 { font-size: 38px; }
-.font-size-xlarge h2 { font-size: 30px; }
-.font-size-xlarge h3 { font-size: 26px; }
-
-/* Skip link */
-.skip-link {
-  position: absolute;
-  top: -100px;
-  right: 0;
-  background: hsl(var(--secondary));
-  color: white;
-  padding: 8px 16px;
-  z-index: 9999;
-  font-family: 'Heebo', sans-serif;
-  font-weight: 600;
-  border-radius: 0 0 0 8px;
-  transition: top 0.2s;
-}
-
-.skip-link:focus {
-  top: 0;
-}
-
-/* Focus styles */
-*:focus-visible {
-  outline: 2px solid hsl(var(--ring));
-  outline-offset: 2px;
-}
-
-/* Print styles */
-@media print {
-  .no-print {
-    display: none !important;
-  }
-
-  body {
-    background: white !important;
-    color: black !important;
-    font-size: 12pt !important;
-  }
-
-  .print-only {
-    display: block !important;
+  .card-elevated {
+    box-shadow: 0 8px 30px rgba(0, 59, 122, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
   }
 }
 
-.print-only {
-  display: none;
-}
-
-/* Agent Chat Animations */
+/* ─── Animations ──────────────────────────────────────────────────────────── */
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -205,23 +130,80 @@
   to { opacity: 1; }
 }
 
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(3, 104, 176, 0.4); }
-  50% { box-shadow: 0 0 0 12px rgba(3, 104, 176, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 99, 204, 0.3); }
+  50% { box-shadow: 0 0 0 10px rgba(0, 99, 204, 0); }
 }
 
-.agent-message-enter {
-  animation: slideUp 0.3s ease-out;
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
 }
 
-.agent-fab-glow {
-  animation: pulse-glow 2s infinite;
+.animate-slide-up { animation: slideUp 0.4s ease-out; }
+.animate-fade-in { animation: fadeIn 0.3s ease; }
+.animate-scale-in { animation: scaleIn 0.3s ease-out; }
+.animate-count-up { animation: countUp 0.5s ease-out; }
+.animate-glow { animation: pulse-glow 2.5s infinite; }
+
+/* ─── Focus & Accessibility ───────────────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
-/* Gradient text for hero */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  right: 0;
+  background: hsl(var(--secondary));
+  color: white;
+  padding: 10px 20px;
+  z-index: 9999;
+  font-weight: 600;
+  border-radius: 0 0 0 12px;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ─── Print ───────────────────────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+}
+.print-only { display: none; }
+
+/* ─── Gradient Utilities ──────────────────────────────────────────────────── */
+.gradient-hero {
+  background: linear-gradient(160deg, #003B7A 0%, #0063CC 45%, #E8A020 100%);
+}
+.gradient-subtle {
+  background: linear-gradient(180deg, hsl(220 20% 97%) 0%, hsl(220 20% 94%) 100%);
+}
 .gradient-text {
-  background: linear-gradient(135deg, hsl(207 95% 35%), hsl(37 78% 52%));
+  background: linear-gradient(135deg, #0063CC, #E8A020);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+/* ─── Gauge / Score ───────────────────────────────────────────────────────── */
+.gauge-ring {
+  transition: stroke-dasharray 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Scrollbar (subtle) ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: hsl(220 15% 85%); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: hsl(220 15% 70%); }
