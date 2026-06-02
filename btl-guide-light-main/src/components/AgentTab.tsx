@@ -96,6 +96,10 @@ function matchDiagnoses(text: string): DiagnosisGroup[] {
     'ראש': ['פגיעת ראש תעסוקתית'],
     'נוירולוגי': ['נוירולוגיה כללי', 'אפילפסיה'],
     'פנימית': ['פנימית כללי'],
+    'איבה': ['PTSD מאירוע איבה', 'פגיעת ראש טראומטית', 'פגיעת גפיים מפיצוץ', 'אובדן שמיעה מפיצוץ'],
+    'הלם': ['הלם קרב', 'PTSD מאירוע איבה'],
+    'פיצוץ': ['אובדן שמיעה מפיצוץ', 'פגיעת גפיים מפיצוץ', 'פגיעת ראש טראומטית'],
+    'מילואים': ['PTSD מאירוע איבה', 'הלם קרב', 'פגיעת ראש טראומטית'],
   };
 
   const results: DiagnosisGroup[] = [];
@@ -132,14 +136,14 @@ export default function AgentTab() {
   useEffect(() => {
     const timer = setTimeout(() => {
       pushAgent(
-        `שלום! 👋 אני **${AGENT_NAME}**, הסוכן החכם שלך לוועדות רפואיות.\n\nאני כאן כדי ללוות אותך מהרגע שקיבלת זימון ועד שתגיע מוכן לוועדה — צ'קליסט מסמכים, מילוי טפסים, הערכת מוכנות, וכל מה שצריך.\n\n**איך אני יכול לעזור?**`,
+        `שלום! 👋 אני **${AGENT_NAME}**, הסוכן החכם שלך לוועדות רפואיות.\n\nאני כאן כדי ללוות אותך מהרגע שקיבלת זימון ועד שתגיע מוכן לוועדה — צ'קליסט מסמכים, מילוי טפסים, הערכת מוכנות, וכל מה שצריך.\n\n🎖️ **חדש: מסלול מהיר לנפגעי פעולות איבה ומילואים**\n\n**איך אני יכול לעזור?**`,
         [
           { id: '1', label: '📋 מה להביא לוועדה?', action: 'מה אני צריך להביא לוועדה?' },
           { id: '2', label: '📝 עזרה במילוי טופס', action: 'אני צריך עזרה במילוי טופס התביעה' },
           { id: '3', label: '🔍 איפה משיגים מסמכים?', action: '__find_docs__' },
-          { id: '4', label: '⚖️ הזכויות שלי', action: 'מה הזכויות שלי בוועדה?' },
-          { id: '5', label: '📊 הערכת מוכנות', action: 'מה הסיכויים שלי?' },
-          { id: '6', label: '❓ שאלות נפוצות', action: 'שאלות נפוצות' },
+          { id: '4', label: '🎖️ נפגעי איבה/מילואים', action: 'נפגע פעולות איבה' },
+          { id: '5', label: '⚖️ הזכויות שלי', action: 'מה הזכויות שלי בוועדה?' },
+          { id: '6', label: '📊 הערכת מוכנות', action: 'מה הסיכויים שלי?' },
         ]
       );
     }, 400);
@@ -254,6 +258,33 @@ export default function AgentTab() {
     // Document finding
     if (lower.includes('איפה') || lower.includes('להשיג') || lower.includes('מציאת') || lower.includes('תור') || lower.includes('קופת חולים')) {
       handleAction('__find_docs__');
+      return;
+    }
+
+    // Hostile acts / Military / Rehabilitation fast-track
+    if (lower.includes('איבה') || lower.includes('מילואים') || lower.includes('שיקום') || lower.includes('צבא') || lower.includes('פיגוע') || lower.includes('מלחמה') || lower.includes('חייל') || lower.includes('לוחם')) {
+      typeAndRespond(() => {
+        let resp = `🎖️ **מסלול מהיר — נפגעי פעולות איבה ומילואים**\n\n`;
+        resp += `אני כאן לעזור. ראשית — באיזה מצב מדובר?\n\n`;
+        resp += `**1. 🏥 פגיעה פיזית** (שבר, פציעה, כוויה, פגיעת ראש)\n`;
+        resp += `**2. 🧠 פגיעה נפשית** (PTSD, חרדה, הלם קרב)\n`;
+        resp += `**3. 👂 פגיעת שמיעה** (מפיצוץ, רעש)\n`;
+        resp += `**4. 👁️ פגיעת ראייה** (מרסיס, פיצוץ)\n`;
+        resp += `**5. 🦴 פגיעה רב-מערכתית**\n\n`;
+        resp += `💡 **חשוב:** לכל פגיעה מאירוע איבה/מילואים נדרש **אישור אירוע רשמי** (ממשטרה, צה"ל, או רשות מוסמכת). זה מסמך חובה מספר 1.\n\n`;
+        resp += `📌 **משרד הביטחון:** פנה גם לאגף השיקום — *3206\n`;
+        resp += `📌 **בטל"א:** נפגעי איבה — *6050\n\n`;
+        resp += `ספר לי על הפגיעה ואכין צ'קליסט מותאם.`;
+
+        pushAgent(resp, [
+          { id: 'ptsd', label: '🧠 PTSD / הלם קרב', action: 'PTSD מאירוע איבה' },
+          { id: 'head', label: '🏥 פגיעת ראש', action: 'פגיעת ראש טראומטית' },
+          { id: 'hearing', label: '👂 שמיעה מפיצוץ', action: 'אובדן שמיעה מפיצוץ' },
+          { id: 'limbs', label: '🦴 פגיעת גפיים', action: 'פגיעת גפיים מפיצוץ' },
+          { id: 'multi', label: '💥 פגיעה רב-מערכתית', action: 'פגיעה רב-מערכתית' },
+          { id: 'form', label: '📝 מילוי טופס תביעה', action: 'עזרה בטופס' },
+        ]);
+      }, 1200);
       return;
     }
 
@@ -615,9 +646,9 @@ export default function AgentTab() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
             {[
               { icon: <ClipboardCheck className="h-5 w-5" />, label: 'צ\'קליסט חכם', sub: '140 אבחנות' },
-              { icon: <FileText className="h-5 w-5" />, label: 'מילוי טפסים', sub: 'שלב אחר שלב' },
-              { icon: <Scale className="h-5 w-5" />, label: 'מיצוי זכויות', sub: 'מותאם אישית' },
-              { icon: <Sparkles className="h-5 w-5" />, label: 'הערכת מוכנות', sub: 'AI מתקדם' },
+              { icon: <FileText className="h-5 w-5" />, label: 'מילוי טפסים', sub: 'BL/283 אמיתי' },
+              { icon: <Scale className="h-5 w-5" />, label: 'מיצוי זכויות', sub: '7 תחומי תביעה' },
+              { icon: <Sparkles className="h-5 w-5" />, label: 'מסלול ירוק', sub: '286 מסמכי AI' },
             ].map((item, i) => (
               <div key={i} className="bg-white/10 backdrop-blur rounded-xl p-3 text-center">
                 <div className="flex justify-center mb-1">{item.icon}</div>
