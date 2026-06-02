@@ -115,7 +115,7 @@ export default function AgentTab() {
   useEffect(() => {
     setTimeout(() => {
       push('agent',
-        `שלום! 👋 אני **${AGENT}**, הסוכן שלך להגשת תביעה לוועדה רפואית.\n\nאלווה אותך מקצה לקצה — מזיהוי הלקות ועד ההכנה לוועדה.\n\n**בוא נתחיל — מה הבעיה הרפואית שלך?**\n\n_תאר בשפה חופשית, לדוגמה: "יש לי סוכרת ובעיות גב"_`,
+        `שלום 👋 אני **${AGENT}**.\n\nאני יודע בדיוק מה צריך לוועדה הרפואית — על בסיס ניתוח **3,934 תיקים** בביטוח לאומי.\n\n**ספר לי: מה הבעיה הרפואית שלך?**`,
         [
           { id: '1', label: '🦴 כאבי גב', action: 'יש לי כאבי גב' },
           { id: '2', label: '💉 סוכרת', action: 'סוכרת' },
@@ -791,19 +791,41 @@ function ChecklistWidget({ data, checked, onToggle }: { data: { documents: Docum
   const required = docs.filter(d => d.priority === 'required');
   const recommended = docs.filter(d => d.priority === 'recommended');
   const optional = docs.filter(d => d.priority === 'optional');
+  const reqDone = required.filter(d => checked[d.id]).length;
+  const greenDocs = docs.filter(d => d.aiRating && d.aiRating >= 4);
 
   return (
     <Card className="border-secondary/20">
       <CardContent className="p-3 space-y-3">
+        {/* Progress header */}
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold">{done}/{docs.length} מסמכים מוכנים</span>
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold">{done}/{docs.length} מסמכים</span>
+            {greenDocs.length > 0 && (
+              <span className="text-[9px] px-1.5 py-0.5 rounded bg-success/10 text-success font-medium">🟢 {greenDocs.length} מסלול ירוק</span>
+            )}
+          </div>
           <Badge className={`text-[10px] ${pct >= 80 ? 'bg-success' : pct >= 50 ? 'bg-warning' : 'bg-destructive'} text-white`}>{pct}%</Badge>
         </div>
         <Progress value={pct} className={`h-2.5 rounded-full ${pct >= 80 ? '[&>div]:bg-success' : pct >= 50 ? '[&>div]:bg-warning' : '[&>div]:bg-destructive'}`} />
+
+        {/* Required status */}
+        {required.length > 0 && reqDone < required.length && (
+          <div className="text-[10px] bg-destructive/5 border border-destructive/20 rounded-lg px-2 py-1.5 text-destructive font-medium">
+            ⚠️ חסרים {required.length - reqDone} מסמכי חובה — בלעדיהם התיק לא יטופל
+          </div>
+        )}
+        {required.length > 0 && reqDone === required.length && (
+          <div className="text-[10px] bg-success/5 border border-success/20 rounded-lg px-2 py-1.5 text-success font-medium">
+            ✅ כל מסמכי החובה מוכנים!
+          </div>
+        )}
+
+        {/* Document list */}
         <div className="space-y-1 max-h-[220px] overflow-y-auto">
-          {required.length > 0 && <><div className="text-[10px] font-bold text-destructive">🔴 חובה</div>{required.map(d => <DocRow key={d.id} doc={d} checked={!!checked[d.id]} onToggle={onToggle} />)}</>}
-          {recommended.length > 0 && <><div className="text-[10px] font-bold text-warning mt-2">🟡 מומלץ</div>{recommended.map(d => <DocRow key={d.id} doc={d} checked={!!checked[d.id]} onToggle={onToggle} />)}</>}
-          {optional.length > 0 && <><div className="text-[10px] font-bold text-secondary mt-2">🔵 רשות</div>{optional.map(d => <DocRow key={d.id} doc={d} checked={!!checked[d.id]} onToggle={onToggle} />)}</>}
+          {required.length > 0 && <><div className="text-[10px] font-bold text-destructive">🔴 חובה — בלי זה לא יטפלו</div>{required.map(d => <DocRow key={d.id} doc={d} checked={!!checked[d.id]} onToggle={onToggle} />)}</>}
+          {recommended.length > 0 && <><div className="text-[10px] font-bold text-warning mt-2">🟡 מומלץ — מחזק משמעותית</div>{recommended.map(d => <DocRow key={d.id} doc={d} checked={!!checked[d.id]} onToggle={onToggle} />)}</>}
+          {optional.length > 0 && <><div className="text-[10px] font-bold text-secondary mt-2">🔵 רשות — משפר</div>{optional.map(d => <DocRow key={d.id} doc={d} checked={!!checked[d.id]} onToggle={onToggle} />)}</>}
         </div>
       </CardContent>
     </Card>
