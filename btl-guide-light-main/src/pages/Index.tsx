@@ -6,6 +6,8 @@ import DashboardTab from '@/components/DashboardTab';
 import CaseTrackingTab from '@/components/CaseTrackingTab';
 import InfoTab from '@/components/InfoTab';
 import AgentTab from '@/components/AgentTab';
+import DigitalTwin from '@/components/DigitalTwin';
+import AIControlCenter from '@/components/AIControlCenter';
 import FeedbackModal from '@/components/FeedbackModal';
 import AIAgentChat from '@/components/AIAgentChat';
 import { Bot, MessageCircle } from 'lucide-react';
@@ -21,9 +23,10 @@ const Index = () => {
 
       <main id="main-content" className="flex-1 max-w-[1200px] mx-auto w-full px-4 py-6" role="main">
         {activeTab === 'agent' && <AgentTab />}
+        {activeTab === 'twin' && <DigitalTwin />}
+        {activeTab === 'ai-center' && <AIControlCenter />}
         {activeTab === 'checklist' && <ChecklistTab />}
         {activeTab === 'dashboard' && <DashboardTab />}
-        {activeTab === 'tracking' && <CaseTrackingTab />}
         {activeTab === 'info' && <InfoTab />}
       </main>
 
