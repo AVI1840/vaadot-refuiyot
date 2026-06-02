@@ -169,33 +169,47 @@ export default function AgentTab() {
         const g = matches[0];
         const req = g.documents.filter(d => d.priority === 'required');
         const rec = g.documents.filter(d => d.priority === 'recommended');
+        const opt = g.documents.filter(d => d.priority === 'optional');
         const total = g.documents.length;
+        const aiDocs = g.documents.filter(d => d.aiRating && d.aiRating >= 4);
 
         let resp = `✅ זיהיתי: **${g.name}**`;
         if (matches.length > 1) resp += ` + ${matches.slice(1).map(m => m.name).join(', ')}`;
         resp += ` (${g.domain})\n\n`;
-        resp += `📋 **הצ'קליסט שלך — ${total} מסמכים:**\n\n`;
-        resp += `🔴 **חובה (${req.length}):**\n`;
+
+        // Show the "aha" - this is personalized based on analysis
+        resp += `📊 _על בסיס ניתוח ${g.domain === 'נכות' ? '778' : g.domain === 'ילד נכה' ? '812' : '778'} תיקים דומים בבטל"א:_\n\n`;
+
+        resp += `🔴 **חובה (${req.length})** — בלי זה התיק לא יטופל:\n`;
         req.forEach((d, i) => {
-          resp += `${i + 1}. ${d.name}`;
-          if (d.whereToGet) resp += ` ← _${d.whereToGet}_`;
+          resp += `  ${i + 1}. **${d.name}**`;
+          if (d.whereToGet) resp += ` ← ${d.whereToGet}`;
+          if (d.aiRating && d.aiRating >= 4) resp += ` 🟢`;
           resp += '\n';
         });
+
         if (rec.length > 0) {
-          resp += `\n🟡 **מומלץ (${rec.length}):**\n`;
-          rec.forEach((d, i) => { resp += `${i + 1}. ${d.name}\n`; });
+          resp += `\n🟡 **מומלץ (${rec.length})** — מחזק את התיק משמעותית:\n`;
+          rec.forEach((d, i) => { resp += `  ${i + 1}. ${d.name}\n`; });
         }
-        const opt = g.documents.filter(d => d.priority === 'optional');
+
         if (opt.length > 0) {
           resp += `\n🔵 **רשות (${opt.length}):** ${opt.map(d => d.name).join(', ')}\n`;
         }
-        resp += `\n**מה כבר יש לך?** סמן למטה 👇`;
+
+        if (aiDocs.length > 0) {
+          resp += `\n🟢 **מסלול ירוק:** ${aiDocs.length} מסמכים אובייקטיביים — ניתנים לאישור מהיר\n`;
+        }
+
+        resp += `\n━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+        resp += `**סמן מה יש לך** ← אני מחשב מוכנות בזמן אמת`;
 
         push('agent', resp, [
-          { id: 'find', label: '🔍 איך משיגים?', action: '__find_docs__' },
-          { id: 'form', label: '📝 מילוי טופס', action: '__start_form__' },
-          { id: 'upload', label: '📤 העלאת מסמכים', action: '__upload__' },
-          { id: 'assess', label: '📊 הערכת סיכויים', action: '__assess__' },
+          { id: 'find', label: '🔍 איך משיגים את מה שחסר?', action: '__find_docs__' },
+          { id: 'form', label: '📝 נמלא את הטופס ביחד', action: '__start_form__' },
+          { id: 'upload', label: '📤 יש לי מסמכים — אעלה', action: '__upload__' },
+          { id: 'assess', label: '📊 מה הסיכויים שלי?', action: '__assess__' },
+          { id: 'prep', label: '🎯 הכנה לוועדה', action: '__prepare__' },
         ], 'checklist', { groups: matches, documents: g.documents });
       }, 1200);
       return;
@@ -232,29 +246,58 @@ export default function AgentTab() {
       setJourneyStep('find-docs');
       if (selectedGroups.length === 0) { push('user', 'איך משיגים מסמכים?'); }
       respond(() => {
-        const diag = selectedGroups.length > 0 ? selectedGroups[0].name : 'הלקות שלך';
-        let resp = `🔍 **תוכנית פעולה להשגת מסמכים — ${diag}:**\n\n`;
-        resp += `**שלב 1 — רופא משפחה** 👨‍⚕️\n`;
-        resp += `• קבע תור → בקש: הפניות למומחים + מכתב מלווה + רשימת תרופות\n`;
-        resp += `• ציין: "אני צריך את זה לוועדה רפואית בביטוח לאומי"\n\n`;
-        resp += `**שלב 2 — רופא מומחה** 🏥\n`;
-        resp += `• בקש סיכום מפורט: אבחנות + ממצאים + מגבלות תפקודיות\n`;
-        resp += `• ⚠️ ודא שהסיכום מ-6 חודשים אחרונים\n\n`;
-        resp += `**שלב 3 — בדיקות** 🔬\n`;
-        resp += `• דם: הפניה מרופא משפחה → מעבדה → תוצאות ב-1-3 ימים\n`;
-        resp += `• הדמיה (MRI/CT): הפניה ממומחה → מכון → דיסק + פענוח\n\n`;
-        resp += `**💻 קביעת תורים — קישורים מהירים:**\n`;
-        resp += `• כללית: *2700 | clalit.co.il\n`;
-        resp += `• מכבי: *3555 | maccabi4u.co.il\n`;
-        resp += `• מאוחדת: *3833 | meuhedet.co.il\n`;
-        resp += `• לאומית: *507 | leumit.co.il\n\n`;
-        resp += `⏱️ **תכנן 3-4 שבועות** להשגת כל המסמכים.`;
+        const g = selectedGroups.length > 0 ? selectedGroups[0] : null;
+        const diagName = g ? g.name : '';
+        const missingReq = g ? g.documents.filter(d => d.priority === 'required' && !checkedDocs[d.id]) : [];
+
+        let resp = `🔍 **תוכנית פעולה אישית${diagName ? ` — ${diagName}` : ''}:**\n\n`;
+
+        if (missingReq.length > 0) {
+          resp += `⚠️ חסרים לך **${missingReq.length} מסמכי חובה**. הנה בדיוק מה לעשות:\n\n`;
+        }
+
+        resp += `**📍 צעד 1 — רופא משפחה** (התחל כאן)\n`;
+        resp += `קבע תור ← בקש:\n`;
+        resp += `• הפניות למומחים הרלוונטיים\n`;
+        resp += `• מכתב מלווה לוועדה\n`;
+        resp += `• רשימת תרופות מעודכנת\n`;
+        resp += `• הפניה לבדיקות דם\n`;
+        resp += `📌 _אמור לרופא: "אני מגיש תביעה לוועדה רפואית — צריך סיכומים מפורטים"_\n\n`;
+
+        resp += `**🏥 צעד 2 — רופא מומחה**\n`;
+        if (g) {
+          // Personalize based on diagnosis
+          const specialists = new Set<string>();
+          g.documents.forEach(d => {
+            if (d.name.includes('אורתופד')) specialists.add('אורתופד');
+            if (d.name.includes('קרדיולוג') || d.name.includes('אקו לב')) specialists.add('קרדיולוג');
+            if (d.name.includes('נוירולוג') || d.name.includes('EMG')) specialists.add('נוירולוג');
+            if (d.name.includes('פסיכיאטר')) specialists.add('פסיכיאטר');
+            if (d.name.includes('אנדוקרינולוג') || d.name.includes('HbA1c')) specialists.add('אנדוקרינולוג');
+            if (d.name.includes('ריאות') || d.name.includes('ספירומטריה')) specialists.add('רופא ריאות');
+            if (d.name.includes('עיניים')) specialists.add('רופא עיניים');
+          });
+          if (specialists.size > 0) {
+            resp += `עבורך: **${[...specialists].join(', ')}**\n`;
+          }
+        }
+        resp += `בקש סיכום מפורט הכולל: אבחנות + ממצאים + **מגבלות תפקודיות**\n`;
+        resp += `⚠️ _ודא שהסיכום מ-6 חודשים אחרונים!_\n\n`;
+
+        resp += `**🔬 צעד 3 — בדיקות**\n`;
+        resp += `• דם → הפניה מרופא משפחה → תוצאות תוך 1-3 ימים\n`;
+        resp += `• הדמיה (MRI/CT) → הפניה ממומחה → **הביא דיסק + פענוח**\n\n`;
+
+        resp += `**📱 קביעת תורים:**\n`;
+        resp += `כללית *2700 | מכבי *3555 | מאוחדת *3833 | לאומית *507\n\n`;
+        resp += `⏱️ **תכנן 3-4 שבועות** לפני הוועדה`;
 
         push('agent', resp, [
-          { id: 'clalit', label: '🏥 כללית', action: '__open_clalit__' },
-          { id: 'maccabi', label: '🏥 מכבי', action: '__open_maccabi__' },
-          { id: 'upload', label: '📤 יש לי מסמכים — אעלה', action: '__upload__' },
+          { id: 'clalit', label: '🏥 כללית אונליין', action: '__open_clalit__' },
+          { id: 'maccabi', label: '🏥 מכבי אונליין', action: '__open_maccabi__' },
+          { id: 'upload', label: '📤 יש לי — אעלה', action: '__upload__' },
           { id: 'form', label: '📝 בינתיים נמלא טופס', action: '__start_form__' },
+          { id: 'back', label: '← חזור לצ\'קליסט', action: '__back_checklist__' },
         ]);
       }, 1000);
       return;
@@ -330,13 +373,28 @@ export default function AgentTab() {
       respond(() => {
         const assessment = computeAssessment();
         const emoji = assessment.level === 'high' ? '🟢' : assessment.level === 'medium' ? '🟡' : '🔴';
-        let resp = `📊 **הערכת סיכויי הצלחה:**\n\n`;
+        const diagName = selectedGroups.length > 0 ? selectedGroups[0].name : 'הלקות שלך';
+        let resp = `📊 **הערכת סיכויים — ${diagName}:**\n\n`;
         resp += `${emoji} ציון מוכנות: **${assessment.score}/100**\n\n`;
-        resp += `**ממצאים:**\n`;
-        assessment.factors.forEach(f => { resp += `• ${f}\n`; });
-        resp += `\n**מה לעשות כדי לשפר:**\n`;
-        assessment.recommendations.forEach(r => { resp += `• ${r}\n`; });
-        resp += `\n💡 _ככל שהתיק שלם יותר — הסיכוי גבוה יותר לאישור מהיר._`;
+
+        // Data-driven insight
+        if (selectedGroups.length > 0) {
+          const g = selectedGroups[0];
+          const reqCount = g.documents.filter(d => d.priority === 'required').length;
+          const aiCount = g.documents.filter(d => d.aiRating && d.aiRating >= 4).length;
+          resp += `_מבוסס על ניתוח תיקים דומים: ${reqCount} מסמכי חובה, ${aiCount} במסלול ירוק_\n\n`;
+        }
+
+        resp += `**מצב התיק שלך:**\n`;
+        assessment.factors.forEach(f => { resp += `${f}\n`; });
+        resp += `\n**מה לעשות עכשיו:**\n`;
+        assessment.recommendations.forEach((r, i) => { resp += `${i + 1}. ${r}\n`; });
+
+        if (assessment.score < 70) {
+          resp += `\n💡 _טיפ: כל מסמך חובה שתוסיף מעלה את הציון ב-10-15 נקודות_`;
+        } else {
+          resp += `\n🎉 _התיק שלך במצב טוב! מומלץ להמשיך להכנה לוועדה._`;
+        }
 
         push('agent', resp, [
           { id: 'find', label: '🔍 השג מה שחסר', action: '__find_docs__' },
@@ -573,18 +631,60 @@ export default function AgentTab() {
             </div>
             <div>
               <h2 className="text-2xl font-extrabold">תביעה ביום</h2>
-              <p className="text-white/80 text-sm">סוכן AI שמלווה אותך מקצה לקצה בהגשת תביעה לוועדה רפואית</p>
+              <p className="text-white/80 text-sm">הגשת תביעה לוועדה רפואית — מקצה לקצה, בליווי סוכן AI</p>
             </div>
           </div>
+
+          {/* Journey Progress — visual, not text */}
           <div className="bg-white/10 backdrop-blur rounded-xl p-4 border border-white/20">
-            <div className="grid grid-cols-3 md:grid-cols-6 gap-2 text-center text-[10px]">
-              {['1. זיהוי לקות', '2. צ\'קליסט', '3. השגת מסמכים', '4. העלאה + OCR', '5. מילוי טופס', '6. הכנה לוועדה'].map((s, i) => (
-                <div key={i} className={`rounded-lg p-2 ${i === (['welcome','identify'].includes(journeyStep) ? 0 : journeyStep === 'checklist' ? 1 : journeyStep === 'find-docs' ? 2 : journeyStep === 'upload' ? 3 : journeyStep === 'fill-form' ? 4 : 5) ? 'bg-white/30 font-bold' : 'bg-white/5'}`}>
-                  {s}
-                </div>
-              ))}
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[11px] font-bold">המסע שלך</span>
+              <span className="text-[10px] text-white/60">
+                {journeyStep === 'identify' ? 'שלב 1' : journeyStep === 'checklist' ? 'שלב 2' : journeyStep === 'find-docs' ? 'שלב 3' : journeyStep === 'upload' ? 'שלב 4' : journeyStep === 'fill-form' ? 'שלב 5' : journeyStep === 'assess' ? 'שלב 6' : 'שלב 7'} מתוך 7
+              </span>
+            </div>
+            <div className="grid grid-cols-7 gap-1">
+              {[
+                { label: 'זיהוי', step: 'identify' as JourneyStep },
+                { label: 'צ\'קליסט', step: 'checklist' as JourneyStep },
+                { label: 'השגה', step: 'find-docs' as JourneyStep },
+                { label: 'העלאה', step: 'upload' as JourneyStep },
+                { label: 'טופס', step: 'fill-form' as JourneyStep },
+                { label: 'הערכה', step: 'assess' as JourneyStep },
+                { label: 'הכנה', step: 'prepare' as JourneyStep },
+              ].map((s, i) => {
+                const steps: JourneyStep[] = ['welcome', 'identify', 'checklist', 'find-docs', 'upload', 'fill-form', 'assess', 'prepare'];
+                const currentIdx = steps.indexOf(journeyStep);
+                const thisIdx = steps.indexOf(s.step);
+                const isActive = s.step === journeyStep;
+                const isDone = thisIdx < currentIdx;
+                return (
+                  <div key={i} className={`text-center rounded-lg py-1.5 px-1 text-[9px] font-medium transition-all ${isActive ? 'bg-white/30 scale-105' : isDone ? 'bg-white/15' : 'bg-white/5'}`}>
+                    <div className="mb-0.5">{isDone ? '✓' : i + 1}</div>
+                    {s.label}
+                  </div>
+                );
+              })}
             </div>
           </div>
+
+          {/* Live stats — only shows after diagnosis selected */}
+          {selectedGroups.length > 0 && (
+            <div className="grid grid-cols-3 gap-2 mt-3">
+              <div className="bg-white/10 rounded-lg p-2 text-center">
+                <div className="text-lg font-bold">{selectedGroups[0].documents.filter(d => d.priority === 'required').length}</div>
+                <div className="text-[9px] text-white/70">מסמכי חובה</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-2 text-center">
+                <div className="text-lg font-bold">{selectedGroups[0].documents.filter(d => checkedDocs[d.id]).length}/{selectedGroups[0].documents.length}</div>
+                <div className="text-[9px] text-white/70">מוכנים</div>
+              </div>
+              <div className="bg-white/10 rounded-lg p-2 text-center">
+                <div className="text-lg font-bold">{selectedGroups[0].documents.filter(d => d.aiRating && d.aiRating >= 4).length}</div>
+                <div className="text-[9px] text-white/70">🟢 מסלול ירוק</div>
+              </div>
+            </div>
+          )}
         </div>
         <div className="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute bottom-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/4 translate-y-1/4" />
