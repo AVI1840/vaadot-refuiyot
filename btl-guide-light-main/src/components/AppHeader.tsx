@@ -8,12 +8,12 @@ interface AppHeaderProps {
 }
 
 const tabs = [
-  { id: 'agent', label: '🤖 נועם — סוכן AI', ariaLabel: 'סוכן AI חכם לליווי בוועדות' },
+  { id: 'agent', label: '🤖 מסע התביעה', ariaLabel: 'מסע הגשת תביעה מלא' },
   { id: 'twin', label: '🎯 תאום דיגיטלי', ariaLabel: 'סימולטור תאום דיגיטלי' },
   { id: 'ai-center', label: '🧠 מרכז AI', ariaLabel: 'מרכז בקרת AI' },
-  { id: 'checklist', label: '📋 צ\'קליסט', ariaLabel: 'הכנת צ\'קליסט מסמכים' },
-  { id: 'dashboard', label: '📊 דשבורד', ariaLabel: 'דשבורד סטטיסטי' },
-  { id: 'info', label: 'ℹ️ מידע', ariaLabel: 'מידע על ועדות רפואיות' },
+  { id: 'roi', label: '📈 ROI', ariaLabel: 'דשבורד ROI ארגוני' },
+  { id: 'arch', label: '☁️ ארכיטקטורה', ariaLabel: 'ארכיטקטורה טכנית' },
+  { id: 'checklist', label: '📋 צ\'קליסט', ariaLabel: 'צ\'קליסט מסמכים' },
 ];
 
 export default function AppHeader({ activeTab, onTabChange }: AppHeaderProps) {
