@@ -81,7 +81,7 @@ const MESSAGES = [
   },
 ];
 
-export default function IntakeChatScreen() {
+export default function IntakeChatScreen({ onNext }: { onNext?: () => void }) {
   const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
   const [hoveredTopic, setHoveredTopic] = useState<string | null>(null);
   const [visibleMessages, setVisibleMessages] = useState(0);
@@ -322,7 +322,10 @@ export default function IntakeChatScreen() {
           </PremiumCard>
 
           {/* CTA */}
-          <button className="w-full rounded-2xl bg-primary text-white font-bold py-3.5 flex items-center justify-center gap-2 hover:bg-primary/90 transition shadow-floating text-sm">
+          <button
+            onClick={onNext}
+            className="w-full rounded-2xl bg-primary text-white font-bold py-3.5 flex items-center justify-center gap-2 hover:bg-primary/90 transition shadow-floating text-sm"
+          >
             <span>המשך לצ׳קליסט המסמכים</span>
             <ArrowLeft className="h-4 w-4" />
           </button>

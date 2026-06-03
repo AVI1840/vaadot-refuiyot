@@ -87,7 +87,7 @@ function TypingDots() {
 
 /* ── Main ───────────────────────────────────────────────────────── */
 
-export default function BL283Screen() {
+export default function BL283Screen({ onNext }: { onNext?: () => void }) {
   const [messages, setMessages] = useState<ChatMsg[]>(INITIAL_MESSAGES);
   const [fields, setFields] = useState<FormField[]>(() =>
     INITIAL_FIELDS.map((f) => ({ ...f, value: FILLED_VALUES[f.id] ?? '', done: !!FILLED_VALUES[f.id] }))
@@ -310,6 +310,7 @@ export default function BL283Screen() {
               </div>
               <button
                 disabled={pct < 100}
+                onClick={pct >= 100 ? onNext : undefined}
                 className={cn(
                   'rounded-xl px-4 py-2 text-xs font-bold flex items-center gap-1.5 transition',
                   pct >= 100

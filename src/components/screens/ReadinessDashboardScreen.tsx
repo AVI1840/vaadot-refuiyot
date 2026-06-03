@@ -122,7 +122,7 @@ function ConfidenceBar({ score, label, note }: { score: number; label: string; n
 }
 
 /* ── Main component ─────────────────────────────────────────────── */
-export default function ReadinessDashboardScreen() {
+export default function ReadinessDashboardScreen({ onNext }: { onNext?: () => void }) {
   const { days, hours, minutes, seconds } = useCountdown(COMMITTEE_DATE);
 
   return (
@@ -357,7 +357,10 @@ export default function ReadinessDashboardScreen() {
               הורד PDF
             </button>
             {/* Primary CTA — larger, with success glow */}
-            <button className="rounded-xl bg-accent text-[hsl(222_47%_18%)] px-6 py-3 text-sm font-extrabold flex items-center gap-2 hover:brightness-105 transition shadow-glow-gold">
+            <button
+              onClick={onNext}
+              className="rounded-xl bg-accent text-[hsl(222_47%_18%)] px-6 py-3 text-sm font-extrabold flex items-center gap-2 hover:brightness-105 transition shadow-glow-gold"
+            >
               הגש לוועדה <ArrowLeft className="h-4 w-4" />
             </button>
           </div>

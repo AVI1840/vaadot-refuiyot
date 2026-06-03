@@ -108,7 +108,7 @@ function AnimatedBar({ pct, tone }: { pct: number; tone: 'blue' | 'green' | 'gol
 }
 
 /* ── Main component ───────────────────────────────────────────────── */
-export default function AIControlCenterScreen() {
+export default function AIControlCenterScreen({ onNext }: { onNext?: () => void }) {
   const scoreValue = useCountUp(84, 1400, 300);
   const deltaValue = useCountUp(42, 1200, 600);
 
@@ -328,6 +328,17 @@ export default function AIControlCenterScreen() {
           </div>
         </div>
       </PremiumCard>
+
+      {/* Next step */}
+      <div className="flex justify-end">
+        <button
+          onClick={onNext}
+          className="rounded-2xl bg-primary text-white font-bold px-8 py-3.5 flex items-center gap-2 hover:bg-primary/90 transition shadow-floating text-sm"
+        >
+          המשך לדשבורד מוכנות
+          <ArrowLeft className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }

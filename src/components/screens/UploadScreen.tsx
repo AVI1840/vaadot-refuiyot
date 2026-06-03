@@ -28,7 +28,7 @@ const AI_FEATURES = [
 
 /* ─── component ──────────────────────────────────────────────────────────── */
 
-export default function UploadScreen() {
+export default function UploadScreen({ onNext }: { onNext?: () => void }) {
   /* Animate readiness score from 66 → 75 on mount */
   const [score, setScore] = useState(66);
   const [ocrProgress, setOcrProgress] = useState(37); // 3/8 pages ≈ 37%
@@ -281,6 +281,17 @@ export default function UploadScreen() {
           </tbody>
         </table>
       </PremiumCard>
+
+      {/* ── Next Step CTA */}
+      <div className="flex justify-end">
+        <button
+          onClick={onNext}
+          className="rounded-2xl bg-primary text-white font-bold px-8 py-3.5 flex items-center gap-2 hover:bg-primary/90 transition shadow-floating text-sm"
+        >
+          המשך לניתוח AI
+          <ArrowLeft className="h-4 w-4" />
+        </button>
+      </div>
     </div>
   );
 }

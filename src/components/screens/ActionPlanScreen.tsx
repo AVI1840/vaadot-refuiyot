@@ -96,7 +96,7 @@ const TYPE_COLOR: Record<ActionItem['type'], string> = {
 
 /* ── Main ──────────────────────────────────────────────────────── */
 
-export default function ActionPlanScreen() {
+export default function ActionPlanScreen({ onNext }: { onNext?: () => void }) {
   const [done, setDone] = useState<Set<string>>(new Set());
   const [selected, setSelected] = useState<string>(ACTIONS[0].id);
 
@@ -292,8 +292,11 @@ export default function ActionPlanScreen() {
           </PremiumCard>
 
           {/* Bottom CTA */}
-          <button className="w-full rounded-2xl bg-primary text-white font-bold py-3.5 flex items-center justify-center gap-2 hover:bg-primary/90 transition shadow-floating text-sm">
-            <span>המשך לשלב הוועדה</span>
+          <button
+            onClick={onNext}
+            className="w-full rounded-2xl bg-primary text-white font-bold py-3.5 flex items-center justify-center gap-2 hover:bg-primary/90 transition shadow-floating text-sm"
+          >
+            <span>המשך לצ׳קליסט</span>
             <ArrowLeft className="h-4 w-4" />
           </button>
         </div>

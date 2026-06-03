@@ -56,7 +56,7 @@ const AI_PREP = [
 
 /* ── Main ───────────────────────────────────────────────────────── */
 
-export default function CommitteePrepScreen() {
+export default function CommitteePrepScreen({ onNext }: { onNext?: () => void }) {
   return (
     <div className="space-y-5 animate-fade-in" dir="rtl">
 
@@ -285,7 +285,10 @@ export default function CommitteePrepScreen() {
             <button className="rounded-xl border hairline bg-white px-5 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 transition flex items-center gap-2">
               <Users className="h-4 w-4" /> צור קשר עם הלשכה
             </button>
-            <button className="rounded-xl bg-accent text-[hsl(222_47%_18%)] px-6 py-3 text-sm font-extrabold hover:brightness-105 transition shadow-glow-gold flex items-center gap-2">
+            <button
+              onClick={onNext}
+              className="rounded-xl bg-accent text-[hsl(222_47%_18%)] px-6 py-3 text-sm font-extrabold hover:brightness-105 transition shadow-glow-gold flex items-center gap-2"
+            >
               <Zap className="h-4 w-4" /> אשר הגשה <ArrowLeft className="h-4 w-4" />
             </button>
           </div>

@@ -127,7 +127,7 @@ const INITIAL_DONE = new Set(ALL_ITEMS.filter((i) => i.status === 'done').map((i
 const TOTAL = ALL_ITEMS.length;
 const MAX_SCORE = 81; // projected score after full completion
 
-export default function ChecklistScreen() {
+export default function ChecklistScreen({ onNext }: { onNext?: () => void }) {
   const [done, setDone] = useState<Set<string>>(INITIAL_DONE);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
@@ -392,9 +392,12 @@ export default function ChecklistScreen() {
               </p>
             </div>
           </div>
-          <button className="flex items-center gap-2 bg-secondary text-white rounded-xl px-5 py-3 text-sm font-bold shadow-card hover:shadow-floating transition-all hover:-translate-y-0.5">
+          <button
+            onClick={onNext}
+            className="flex items-center gap-2 bg-secondary text-white rounded-xl px-5 py-3 text-sm font-bold shadow-card hover:shadow-floating transition-all hover:-translate-y-0.5"
+          >
             <Sparkles className="h-4 w-4" />
-            סכם תיק עם AI
+            המשך להעלאת מסמכים
             <ChevronLeft className="h-4 w-4" />
           </button>
         </div>
