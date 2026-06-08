@@ -31,10 +31,15 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps 2>&1 || npm install --force 2>&1
+
+      - name: Type check (non-blocking)
+        run: npx tsc --noEmit 2>&1 || true
 
       - name: Build
-        run: npx vite build || (echo "Build failed, trying with --force" && npx vite build)
+        run: npx vite build
+        env:
+          NODE_ENV: production
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
