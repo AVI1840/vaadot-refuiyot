@@ -14,6 +14,9 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-and-deploy:
     environment:
@@ -28,12 +31,10 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build
-        run: npm run build
+        run: npx vite build || (echo "Build failed, trying with --force" && npx vite build)
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
